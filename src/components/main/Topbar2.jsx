@@ -1,13 +1,13 @@
 import React from "react";
-import "../../style/main/Topbar.scss";
+import "../../style/main/Topbar2.scss";
 // import { FiBell } from "react-icons/fi";
 
 const Topbar = () => {
   return (
-    <div className="bar_body">
+    <div className="bar_body bar_body2">
       <div className="bar_contain">
-        <div className="bar_body_wrap">
-          <div className="top_logo">
+        <div className="bar_body_wrap bar_body_wrap2">
+          <div className="top_logo top_logo2">
             <a href="/">딩댕동</a>
           </div>
           <div className="search_topbar">
