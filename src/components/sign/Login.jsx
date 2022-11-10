@@ -11,14 +11,17 @@ const Login = () => {
           <div className="login_container_wrap">
             <div className="login_container_title">로그인</div>
             <div className="login_container_content">
-              <div className="login_id">
-                <p>아이디</p>
-                <input type="text" />
-              </div>
-              <div className="login_password">
-                <p>비밀번호</p>
-                <input type="text" />
-              </div>
+              <form action="">
+                <div className="login_id">
+                  <p>아이디</p>
+                  <input type="text" />
+                </div>
+                <div className="login_password">
+                  <p>비밀번호</p>
+                  <input type="text" />
+                </div>
+                <button className="loginBtn">로그인</button>
+              </form>
             </div>
           </div>
         </div>

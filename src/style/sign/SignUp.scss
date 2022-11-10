@@ -1,3 +1,15 @@
-.signup_container_content > div {
+.signup_container_content > form > div {
   border: 1px solid rgba(176, 222, 240, 0);
+  position: relative;
+  right: 180px;
+}
+.signBtn {
+  font-family: "Pretendard-Regular";
+  position: relative;
+  width: 26.6%;
+  height: 30px;
+  top: 13px;
+  left: 23px;
+  cursor: pointer;
+  border: 1px solid rgba(179, 179, 179, 0.5);
 }

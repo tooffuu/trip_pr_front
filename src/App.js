@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/main/Home";
 import Login from "./components/sign/Login";
 import SignUp from "./components/sign/SignUp";
+import SignUser from "./components/sign/SignUser";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path={"/signup"} exact>
           <SignUp />
+        </Route>
+        <Route path={"/selectRole"} exact>
+          <SignUser />
         </Route>
       </Switch>
     </BrowserRouter>
