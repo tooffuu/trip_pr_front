@@ -5,7 +5,7 @@ import "../../style/main/Topbar2.scss";
 import profile from "../../image/profile.png";
 // import { FiBell } from "react-icons/fi";
 
-const Topbar = () => {
+const Topbar2 = () => {
   const [user, setUser] = useRecoilState(userState);
 
   return (
@@ -38,14 +38,22 @@ const Topbar = () => {
               >
                 로그아웃
               </div>
-              <div
-                className="userProfile"
-                onClick={() => {
-                  window.location.href = "/login";
-                }}
-              >
-                <p className="userNick">{user && `${user.nickname}`}</p>
-                <img className="userImg" src={profile} alt="" />
+              <div className="userProfile">
+                <p
+                  onClick={() => {
+                    window.location.href = "/checkpw";
+                  }}
+                  className="userNick"
+                >
+                  {user && `${user.nickname}`}
+                </p>
+                <img
+                  onClick={() => {
+                    window.location.href = "/myprofile";
+                  }}
+                  className="userImg"
+                  src={profile}
+                />
               </div>
             </div>
           ) : (
@@ -66,4 +74,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default Topbar2;

@@ -34,7 +34,7 @@
 // 탑바 검색 인풋창
 .search_topbar > p {
   position: absolute;
-  right: 573px;
+  right: 600px;
   top: 12px;
   scale: 1.3;
 }
@@ -43,7 +43,7 @@
   top: 20px;
   height: 38px;
   width: 200px;
-  right: 350px;
+  right: 380px;
   outline: none;
   border: 1px solid rgba(202, 202, 202, 0.7);
 }
@@ -101,22 +101,25 @@
 .sign_topbar_user {
   position: absolute;
   top: 17px;
-  right: 70px;
+  right: -150px;
+  width: 500px;
 }
 .logout_topbar {
   position: relative;
-  right: 30px;
+  left: 20px;
   cursor: pointer;
 }
 
 // 탑바 닉네임
 .userProfile {
   position: relative;
-  left: -10px;
+  left: 65px;
   cursor: pointer;
 }
 .userNick {
   position: relative;
+  display: inline-block;
+  left: 23px;
   color: gray;
 }
 .userNick:hover {
@@ -125,7 +128,7 @@
 .userImg {
   position: absolute;
   top: 5px;
-  left: 55px;
+  left: -30px;
   width: 40px;
   height: 40px;
   border: 1px solid rgba(96, 96, 96, 0.3);

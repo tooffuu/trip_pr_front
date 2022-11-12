@@ -25,7 +25,7 @@ const Login = () => {
       setMemberId("");
       setPassword("");
       setUser(data.data);
-      alert("로그인 성공");
+      alert(data.data.nickname + "님 환영합니다! 🚀");
       window.location.href = "/";
     } catch (e) {
       console.log(e);

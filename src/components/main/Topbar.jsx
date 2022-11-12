@@ -38,14 +38,22 @@ const Topbar = () => {
               >
                 로그아웃
               </div>
-              <div
-                className="userProfile"
-                onClick={() => {
-                  window.location.href = "/login";
-                }}
-              >
-                <p className="userNick">{user && `${user.nickname}`}</p>
-                <img className="userImg" src={profile} alt="" />
+              <div className="userProfile">
+                <p
+                  onClick={() => {
+                    window.location.href = "/checkpw";
+                  }}
+                  className="userNick"
+                >
+                  {user && `${user.nickname}`}
+                </p>
+                <img
+                  onClick={() => {
+                    window.location.href = "/myprofile";
+                  }}
+                  className="userImg"
+                  src={profile}
+                />
               </div>
             </div>
           ) : (

@@ -1,0 +1,94 @@
+.leftbar_body {
+  font-family: "Pretendard-Regular";
+  position: relative;
+  top: 0;
+  left: -100px;
+  width: 300px;
+  z-index: 1;
+}
+.leftbar_container_wrap {
+  position: relative;
+  display: inline-block;
+  // border: 0.1px solid rgba(138, 205, 232, 0.4);
+  top: 5px;
+  width: 300px;
+  height: 850px;
+}
+// 프로필 나타내기 시작
+.leftbar_profile {
+  position: relative;
+  top: 45px;
+}
+.left_mypic {
+  position: relative;
+  left: 15px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.left_mynick {
+  position: absolute;
+  font-size: 27px;
+  top: -10px;
+  left: 110px;
+  color: rgba(45, 45, 45, 0.9);
+  cursor: pointer;
+}
+.left_mynick:hover {
+  text-decoration: underline;
+}
+.left_mynick_notuser {
+  font-size: 23px;
+}
+.left_account_e {
+  position: absolute;
+  top: 40px;
+  left: 110px;
+  font-size: 15px;
+  color: rgba(150, 150, 150, 0.7);
+}
+// 프로필 나타내기 끝
+
+// 메뉴 리스트 구현
+.left_menuList {
+  position: relative;
+  border-top: 1px solid rgba(150, 150, 150, 0.3);
+  top: 80px;
+  height: 600px;
+}
+.menu_wrap {
+  width: 93%;
+  position: relative;
+  left: 20px;
+}
+.menu_setting01 {
+  position: relative;
+  top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.menu_setting01 > a {
+  position: relative;
+  font-weight: lighter;
+  display: block;
+  height: 25px;
+  width: 90%;
+  margin-bottom: 3px;
+}
+.menu_setting01 > a:hover {
+  position: relative;
+  background-color: rgba(150, 150, 150, 0.2);
+}
+.menu_setting01 > a:first-child {
+  margin-top: 15px;
+}
+.menu_setting01 > a > p {
+  position: relative;
+  display: inline-block;
+  left: 15px;
+  top: -15.5px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
