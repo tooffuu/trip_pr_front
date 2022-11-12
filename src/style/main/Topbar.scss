@@ -82,14 +82,52 @@
   position: absolute;
   right: 120px;
   top: 30px;
-  div {
-    display: inline-block;
-    cursor: pointer;
-  }
-  div:first-child {
-    margin-right: 20px;
-  }
-  div:hover {
-    text-decoration: underline;
-  }
+}
+.login_topbar .signUp_topbar {
+  display: inline-block;
+  cursor: pointer;
+}
+.login_topbar {
+  margin-right: 25px;
+}
+.login_topbar:hover {
+  text-decoration: underline;
+}
+.signUp_topbar:hover {
+  text-decoration: underline;
+}
+
+// 로그아웃 버튼
+.sign_topbar_user {
+  position: absolute;
+  top: 17px;
+  right: 70px;
+}
+.logout_topbar {
+  position: relative;
+  right: 30px;
+  cursor: pointer;
+}
+
+// 탑바 닉네임
+.userProfile {
+  position: relative;
+  left: -10px;
+  cursor: pointer;
+}
+.userNick {
+  position: relative;
+  color: gray;
+}
+.userNick:hover {
+  text-decoration: underline;
+}
+.userImg {
+  position: absolute;
+  top: 5px;
+  left: 55px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(96, 96, 96, 0.3);
+  border-radius: 50%;
 }
