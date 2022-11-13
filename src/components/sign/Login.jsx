@@ -66,6 +66,18 @@ const Login = () => {
                 <button className="loginBtn">로그인</button>
               </form>
             </div>
+            <div className="findData">
+              <div className="findId">
+                <a href="#" title="아이디 찾기">
+                  아이디를 잊어버리셨나요?
+                </a>
+              </div>
+              <div className="findPw">
+                <a href="#" title="비밀번호 찾기">
+                  비밀번호를 잊어버리셨나요?
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

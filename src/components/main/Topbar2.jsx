@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../recoil";
 import "../../style/main/Topbar2.scss";
 import profile from "../../image/profile.png";
-// import { FiBell } from "react-icons/fi";
+import { FiBell } from "react-icons/fi";
 
 const Topbar2 = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -45,7 +45,7 @@ const Topbar2 = () => {
                   }}
                   className="userNick"
                 >
-                  {user && `${user.nickname}`}
+                  {user.nickname}
                 </p>
                 <img
                   onClick={() => {
@@ -54,6 +54,9 @@ const Topbar2 = () => {
                   className="userImg"
                   src={profile}
                 />
+                <div className="nonfication_icon">
+                  <FiBell />
+                </div>
               </div>
             </div>
           ) : (
@@ -69,8 +72,6 @@ const Topbar2 = () => {
         </div>
       </div>
     </div>
-    // 알림 아이콘
-    // <FiBell />
   );
 };
 

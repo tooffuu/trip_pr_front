@@ -26,7 +26,7 @@ const Profile = () => {
                   <input
                     type="text"
                     spellCheck={false}
-                    value={user.memberName}
+                    value={user && `${user.memberName}`}
                   />
                 </div>
                 <div>
@@ -34,13 +34,17 @@ const Profile = () => {
                   <input
                     className="input_Id"
                     type="text"
-                    value={user.memberId}
+                    value={user && `${user.memberId}`}
                     readOnly
                   />
                 </div>
                 <div>
                   <p>닉네임</p>
-                  <input type="text" spellCheck={false} value={user.nickname} />
+                  <input
+                    type="text"
+                    spellCheck={false}
+                    value={user && `${user.nickname}`}
+                  />
                 </div>
                 <div>
                   <p>패스워드</p>

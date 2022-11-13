@@ -68,3 +68,18 @@
   height: 29.8px;
   background-color: rgba(148, 148, 148, 0.3);
 }
+// 로그인창에 ID / PW 찾기
+.findData {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  top: 190px;
+  left: 80px;
+}
+.findData > div {
+  font-size: 12px;
+  color: rgba(98, 98, 98, 0.8);
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-bottom: 5px;
+}

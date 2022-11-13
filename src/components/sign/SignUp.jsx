@@ -3,6 +3,9 @@ import Topbar2 from "../main/Topbar2";
 import "../../style/sign/SignUp.scss";
 import { BACKEND_URL } from "../../utils/env";
 import axios from "axios";
+import kakao from "../../image/kakao.png";
+import naver from "../../image/naver.png";
+import google from "../../image/google.png";
 
 const SignUp = () => {
   const [memberId, setMemberId] = useState("");
@@ -19,7 +22,7 @@ const SignUp = () => {
         nickname === "" ||
         password === ""
       ) {
-        alert("데이터를 모두 입력해주세요.");
+        alert("정보를 모두 입력해주세요.");
       } else {
         try {
           const data = await axios({
@@ -102,6 +105,18 @@ const SignUp = () => {
                   가입하기
                 </button>
               </form>
+            </div>
+            <div className="fast_signUp">
+              <p>👉 1초만에 가입하기</p>
+              <div className="kakaoSign">
+                <img src={kakao} alt="" />
+              </div>
+              <div className="naverSign">
+                <img src={naver} alt="" />
+              </div>
+              <div className="googleSign">
+                <img src={google} alt="" />
+              </div>
             </div>
           </div>
         </div>

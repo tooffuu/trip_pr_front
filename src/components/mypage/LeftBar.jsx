@@ -33,31 +33,31 @@ const LeftBar = () => {
                 <div className="menu_setting01">
                   🌞Setting
                   <a href="/checkpw">
-                    <p>🦸‍♀️ 프로필 변경</p>
+                    <p>🦸‍♀️ 프로필 변경하기</p>
                   </a>
                   <a href="/myprofile">
-                    <p>🦸‍♀️ 내 리뷰 보기</p>
+                    <p>🦸‍♀️ Nonfications</p>
+                  </a>
+                  <a href="/myprofile">
+                    <p>🦸‍♀️ 나의 리뷰</p>
                   </a>
                   <a href="/checkpw">
-                    <p>🦸‍♀️ 프로필 변경</p>
+                    <p>🦸‍♀️ 나의 코스</p>
                   </a>
                   <a href="/checkpw">
-                    <p>🦸‍♀️ 프로필 변경</p>
-                  </a>
-                  <a href="/checkpw">
-                    <p>🦸‍♀️ 프로필 변경</p>
+                    <p>🦸‍♀️ 사진 보기</p>
                   </a>
                 </div>
                 <div className="menu_setting01">
                   🌴Setting
                   <a href="/checkpw">
-                    <p>프로필 변경</p>
+                    <p>🎅 고객센터</p>
                   </a>
                   <a href="/checkpw">
-                    <p>프로필 변경</p>
+                    <p>🎅 프로필 변경</p>
                   </a>
                   <a href="/checkpw">
-                    <p>프로필 변경</p>
+                    <p>🎅 프로필 변경</p>
                   </a>
                 </div>
               </div>

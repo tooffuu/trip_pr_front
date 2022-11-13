@@ -19,3 +19,35 @@
   top: 13.5px;
   background-color: rgba(148, 148, 148, 0.3);
 }
+.fast_signUp {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+  top: 300px;
+  left: 22px;
+  width: 300px;
+  border: 1px solid rgba(179, 179, 179, 0.3);
+  border-radius: 15px;
+}
+.fast_signUp > p {
+  position: relative;
+  left: -4px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+}
+.fast_signUp > div {
+  position: relative;
+  left: -10px;
+  display: inline-block;
+  margin-left: 20px;
+}
+.fast_signUp > div > img {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+.googleSign {
+  border: 1px solid rgba(179, 179, 179, 0.3);
+  border-radius: 50%;
+}
