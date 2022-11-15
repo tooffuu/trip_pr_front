@@ -24,3 +24,16 @@
   top: 115px;
   width: 500px;
 }
+// 탈퇴 버튼
+.deleteUser {
+  position: relative;
+  font-size: 12px;
+  color: rgba(98, 98, 98, 0.8);
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-bottom: 5px;
+  cursor: pointer;
+  top: 20px;
+  left: 140px;
+  display: inline-block;
+}

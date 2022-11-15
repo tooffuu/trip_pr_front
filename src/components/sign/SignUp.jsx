@@ -12,6 +12,7 @@ const SignUp = () => {
   const [memberName, setMemberName] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const joinUser = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const SignUp = () => {
         memberId === "" ||
         memberName === "" ||
         nickname === "" ||
+        email === "" ||
         password === ""
       ) {
         alert("정보를 모두 입력해주세요.");
@@ -32,15 +34,17 @@ const SignUp = () => {
               memberId,
               memberName,
               nickname,
+              email,
               password,
             },
           });
           setMemberId("");
           setMemberName("");
           setNickname("");
+          setEmail("");
           setPassword("");
           alert("회원가입이 완료되었습니다.");
-          window.location.href = "/";
+          window.location.href = "/login";
         } catch (e) {
           alert("회원가입이 실패하였습니다. 데이터를 확인해주세요.");
         }
@@ -63,6 +67,7 @@ const SignUp = () => {
                     type="text"
                     placeholder="이름을 입력해주세요."
                     value={memberName}
+                    spellCheck={false}
                     onChange={(e) => {
                       setMemberName(e.target.value);
                     }}
@@ -78,6 +83,7 @@ const SignUp = () => {
                       setMemberId(e.target.value);
                     }}
                   />
+                  {/* <p className="signUp_alert_p">영어로 입력 부탁</p> */}
                 </div>
                 <div>
                   <p>닉네임</p>
@@ -87,6 +93,17 @@ const SignUp = () => {
                     value={nickname}
                     onChange={(e) => {
                       setNickname(e.target.value);
+                    }}
+                  />
+                </div>
+                <div>
+                  <p>이메일</p>
+                  <input
+                    type="text"
+                    placeholder="이메일을 입력해주세요."
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
                     }}
                   />
                 </div>
@@ -105,17 +122,17 @@ const SignUp = () => {
                   가입하기
                 </button>
               </form>
-            </div>
-            <div className="fast_signUp">
-              <p>👉 1초만에 가입하기</p>
-              <div className="kakaoSign">
-                <img src={kakao} alt="" />
-              </div>
-              <div className="naverSign">
-                <img src={naver} alt="" />
-              </div>
-              <div className="googleSign">
-                <img src={google} alt="" />
+              <div className="fast_signUp">
+                <p>👉 1초만에 가입하기</p>
+                <div className="kakaoSign">
+                  <img src={kakao} alt="" />
+                </div>
+                <div className="naverSign">
+                  <img src={naver} alt="" />
+                </div>
+                <div className="googleSign">
+                  <img src={google} alt="" />
+                </div>
               </div>
             </div>
           </div>

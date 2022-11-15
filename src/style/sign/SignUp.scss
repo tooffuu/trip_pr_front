@@ -23,7 +23,7 @@
   position: relative;
   display: inline-block;
   padding-bottom: 12px;
-  top: 300px;
+  top: 25px;
   left: 22px;
   width: 300px;
   border: 1px solid rgba(179, 179, 179, 0.3);
@@ -50,4 +50,14 @@
 .googleSign {
   border: 1px solid rgba(179, 179, 179, 0.3);
   border-radius: 50%;
+}
+// 유효성 검사 표시 라인
+.signUp_alert_p {
+  position: relative;
+  font-size: 13px;
+  text-align: left;
+  width: 290px;
+  top: 6px;
+  left: 55.7%;
+  color: rgba(241, 0, 0, 0.9);
 }

@@ -8,6 +8,8 @@ import SignUp from "./components/sign/SignUp";
 import SignUser from "./components/sign/SignUser";
 import Profile from "./components/mypage/Profile";
 import CheckPw from "./components/mypage/CheckPw";
+import FindId from "./components/sign/FindId";
+import FindPw from "./components/sign/FindPw";
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
           </Route>
           <Route path={"/checkpw"} exact>
             <CheckPw />
+          </Route>
+          <Route path={"/findid"} exact>
+            <FindId />
+          </Route>
+          <Route path={"/findpw"} exact>
+            <FindPw />
           </Route>
         </Switch>
       </BrowserRouter>

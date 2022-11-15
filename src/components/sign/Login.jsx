@@ -28,7 +28,7 @@ const Login = () => {
       alert(data.data.nickname + "님 환영합니다! 🚀");
       window.location.href = "/";
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       alert("로그인 실패! 아이디 또는 비밀번호를 확인하세요.");
       setPassword("");
     }
@@ -68,7 +68,7 @@ const Login = () => {
             </div>
             <div className="findData">
               <div className="findId">
-                <a href="#" title="아이디 찾기">
+                <a href="findid" title="아이디 찾기">
                   아이디를 잊어버리셨나요?
                 </a>
               </div>

@@ -1,13 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../recoil";
 import "../../style/mypage/Profile.scss";
+import { BACKEND_URL } from "../../utils/env";
 import Topbar2 from "../main/Topbar2";
 import LeftBar from "./LeftBar";
 
 const Profile = () => {
+  const [id, setId] = useState("");
   const [user, setUser] = useRecoilState(userState);
-
+  const deleteUser = async (e) => {
+    if (window.confirm("정말 탈퇴하시겠습니까? 😱")) {
+      e.preventDefault();
+      try {
+        const data = await axios({
+          url: `${BACKEND_URL}/member/delete/${user.id}`,
+          method: "DELETE",
+          data: {
+            id,
+          },
+        });
+        alert("탈퇴 완료 👋");
+        setUser(null);
+        window.location.href = "/";
+      } catch (e) {
+        alert("탈퇴 실패 ! 다시 시도해주세용");
+      }
+    }
+  };
   return (
     <>
       <Topbar2 />
@@ -55,6 +76,9 @@ const Profile = () => {
                 </div>
                 <button className="signBtn">프로필 수정</button>
               </form>
+              <div className="deleteUser" onClick={deleteUser}>
+                탈퇴하기
+              </div>
             </div>
           </div>
         </div>
