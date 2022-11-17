@@ -73,7 +73,7 @@ const Login = () => {
                 </a>
               </div>
               <div className="findPw">
-                <a href="#" title="비밀번호 찾기">
+                <a href="findpw" title="비밀번호 찾기">
                   비밀번호를 잊어버리셨나요?
                 </a>
               </div>

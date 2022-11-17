@@ -30,7 +30,7 @@ const FindId = () => {
                 <div className="login_password findEmail">
                   <p>이메일</p>
                   <input
-                    type="password"
+                    type="text"
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
