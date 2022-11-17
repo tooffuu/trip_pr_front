@@ -16,6 +16,7 @@ const Topbar = () => {
             <a href="/">딩댕동</a>
           </div>
           <div className="search_topbar">
+            {/* 추후에 클릭하면 검색기록 나오게 할 예정 */}
             <p>👀</p>
             <input
               className="search_topbar_input"

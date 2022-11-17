@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-// import { useRecoilState } from "recoil";
-// import { userState } from "../../recoil";
 import "../../style/sign/FindPw.scss";
 import { BACKEND_URL } from "../../utils/env";
 import Topbar2 from "../main/Topbar2";
@@ -12,7 +10,6 @@ const FindPw = () => {
   const [email, setEmail] = useState("");
   const [userPw, setUserPw] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useRecoilState(userState);
 
   const findUserData = async (e) => {
     e.preventDefault();
@@ -34,22 +31,27 @@ const FindPw = () => {
     }
   };
 
+  // 비밀번호 변경
   const updatePassword = async (e) => {
     e.preventDefault();
-    try {
-      const data = await axios({
-        url: `${BACKEND_URL}/member/updatePw/${id}`,
-        method: "PATCH",
-        data: {
-          password,
-        },
-      });
-      setPassword(data.data);
-      alert("🔔 비밀번호가 변경되었습니다.");
-      window.location.href = "/";
-    } catch (e) {
-      console.log(e);
-      alert("🔔 비밀번호 변경 실패 ! 다시 시도해주세요.");
+    if (password == "") {
+      alert("공백있음");
+    } else {
+      try {
+        const data = await axios({
+          url: `${BACKEND_URL}/member/updatePw/${id}`,
+          method: "PATCH",
+          data: {
+            password,
+          },
+        });
+        setPassword(data.data);
+        alert("🔔 비밀번호가 변경되었습니다.");
+        window.location.href = "/";
+      } catch (e) {
+        console.log(e);
+        alert("🔔 비밀번호 변경 실패 ! 다시 시도해주세요.");
+      }
     }
   };
 

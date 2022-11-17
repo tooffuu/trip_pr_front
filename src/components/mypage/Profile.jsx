@@ -9,7 +9,32 @@ import LeftBar from "./LeftBar";
 
 const Profile = () => {
   const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const [user, setUser] = useRecoilState(userState);
+
+  const updatePassword = async (e) => {
+    e.preventDefault();
+    if (password == "") {
+      alert("공백있음");
+    } else {
+      try {
+        const data = await axios({
+          url: `${BACKEND_URL}/member/updatePw/${user.id}`,
+          method: "PATCH",
+          data: {
+            password,
+          },
+        });
+        setPassword(data.data);
+        alert("🔔 비밀번호가 변경되었습니다.");
+        window.location.href = "/";
+      } catch (e) {
+        console.log(e);
+        alert("🔔 비밀번호 변경 실패 ! 다시 시도해주세요.");
+      }
+    }
+  };
+
   const deleteUser = async (e) => {
     if (window.confirm("정말 탈퇴하시겠습니까? 😱")) {
       e.preventDefault();
@@ -25,10 +50,11 @@ const Profile = () => {
         setUser(null);
         window.location.href = "/";
       } catch (e) {
-        alert("탈퇴 실패 ! 다시 시도해주세용");
+        alert("탈퇴 실패 ! 다시 시도해주세요");
       }
     }
   };
+
   return (
     <>
       <Topbar2 />
@@ -41,7 +67,7 @@ const Profile = () => {
             </div>
             <hr className="profileHr" />
             <div className="login_container_content signup_container_content">
-              <form action="">
+              <form onSubmit={updatePassword}>
                 <div>
                   <p>이름</p>
                   <input
@@ -71,6 +97,9 @@ const Profile = () => {
                   <p>패스워드</p>
                   <input
                     type="password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                     placeholder="변경할 패스워드를 입력해주세요"
                   />
                 </div>

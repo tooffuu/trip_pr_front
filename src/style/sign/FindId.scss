@@ -12,3 +12,25 @@
   position: relative;
   left: -10px;
 }
+// id 찾았을 경우 나오는 폼
+.findUserId {
+  position: relative;
+  border: 1px solid rgba(177, 177, 177, 0.5);
+  border-radius: 20px;
+  padding: 0 70px;
+  left: 20px;
+  display: inline-block;
+}
+.findUserId > div {
+  position: relative;
+  display: inline-flex;
+  padding-top: 50px;
+}
+.findUserId > div > p {
+  position: relative;
+  top: -32px;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 0 14px;
+  color: rgb(71, 152, 244);
+}
