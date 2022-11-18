@@ -17,7 +17,9 @@ const Topbar = () => {
           </div>
           <div className="search_topbar">
             {/* 추후에 클릭하면 검색기록 나오게 할 예정 */}
-            <p>👀</p>
+            <p className="searchlist" title="검색기록">
+              👀
+            </p>
             <input
               className="search_topbar_input"
               type="text"

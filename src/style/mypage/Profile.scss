@@ -24,6 +24,43 @@
   top: 115px;
   width: 500px;
 }
+// 파일 업로드
+.file_upload_box {
+  position: relative;
+  display: inline-block;
+  width: 480px;
+  height: 180px;
+  margin-bottom: 20px;
+}
+.file_box {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  top: 10px;
+  left: 30px;
+}
+.file_box > img {
+  position: relative;
+  border: 1px solid rgba(104, 104, 104, 0.4);
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.file_upload_input {
+  position: absolute;
+  top: 80px;
+  left: 220px;
+}
+.upload_photo_btn {
+  font-family: "Pretendard-Regular";
+  position: relative;
+  top: -20px;
+  left: 28px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  border: 1px solid rgba(179, 179, 179, 0.5);
+}
 // 탈퇴 버튼
 .deleteUser {
   position: relative;
