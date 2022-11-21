@@ -66,7 +66,10 @@ const FindId = () => {
                 </div>
               )}
             </div>
-            <div className="findData">
+            <div className="findData findData_2">
+              <div className="findDataLogin">
+                <a href="login">로그인하기</a>
+              </div>
               <div className="findPw">
                 <a href="findpw" title="비밀번호 찾기">
                   비밀번호를 잊어버리셨나요?

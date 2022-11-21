@@ -12,8 +12,7 @@ const Profile = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useRecoilState(userState);
-  const [memberName, setMemberName] = useState(user.memberName);
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState(user && user.nickname);
 
   // 비밀번호 변경 -> 후에 이름 / 닉네임 / 비밀번호 동시 변경 코드로 수정
   const updatePassword = async (e) => {
@@ -87,12 +86,10 @@ const Profile = () => {
                 <div>
                   <p>이름</p>
                   <input
+                    className="input_Id"
                     type="text"
-                    spellCheck={false}
-                    value={memberName}
-                    onChange={(e) => {
-                      setMemberName(e.target.value);
-                    }}
+                    value={user && `${user.memberName}`}
+                    readOnly
                   />
                 </div>
                 <div>
