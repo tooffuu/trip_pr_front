@@ -6,7 +6,7 @@ import "../../style/mypage/Profile.scss";
 import { BACKEND_URL } from "../../utils/env";
 import Topbar2 from "../main/Topbar2";
 import LeftBar from "./LeftBar";
-import profile from "../../image/profile.png";
+import UpdateProfileImage from "./UpdateProfileImage";
 
 const Profile = () => {
   const [id, setId] = useState("");
@@ -17,7 +17,7 @@ const Profile = () => {
   // 비밀번호 변경 -> 후에 이름 / 닉네임 / 비밀번호 동시 변경 코드로 수정
   const updatePassword = async (e) => {
     e.preventDefault();
-    if (password == "") {
+    if (password === "") {
       alert("🔔 패스워드를 입력해주세요.");
     } else {
       try {
@@ -71,17 +71,7 @@ const Profile = () => {
             </div>
             <hr className="profileHr" />
             <div className="login_container_content signup_container_content">
-              <div className="file_upload_box">
-                <div className="file_box">
-                  <img src={profile} />
-                </div>
-                <input
-                  className="file_upload_input"
-                  type="file"
-                  accept="image/*"
-                />
-                <button className="upload_photo_btn">사진등록</button>
-              </div>
+              <UpdateProfileImage />
               <form onSubmit={updatePassword}>
                 <div>
                   <p>이름</p>

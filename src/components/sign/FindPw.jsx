@@ -35,7 +35,7 @@ const FindPw = () => {
   const updatePassword = async (e) => {
     e.preventDefault();
     if (password == "") {
-      alert("공백있음");
+      alert("변경할 암호를 입력해주세요 😊");
     } else {
       try {
         const data = await axios({
