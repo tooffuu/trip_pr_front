@@ -9,7 +9,7 @@ const UpdateProfileImage = () => {
   const [user, setUser] = useRecoilState(userState);
   const [imageSrc, setImageSrc] = useState("");
   const [memberId, setMemberId] = useState(user && user.memberId);
-  const [image, setImaget] = useState();
+  const [originalImageName, setOriginalImageName] = useState("");
 
   // 썸네일 추출
   const setThumbnail = (fileBlob) => {
@@ -24,47 +24,35 @@ const UpdateProfileImage = () => {
   };
 
   // 이미지 저장
-  //   const onImgChange = async (e) => {
-  //     e.preventDefault();
-  //     try {
-  //       const formData = new FormData();
-  //       formData.append("file", e.target.files[0]);
-  //       const response = await axios.post(
-  //         `${BACKEND_URL}/image/profile`,
-  //         formData
-  //       );
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-
   const onImgChange = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
 
-    // const blob = new Blob([JSON.stringify(e.target.value)], {
-    //   type: "application/json",
-    // });
-
-    // formData.append("data", blob);
-    try {
-      const data = await axios({
-        method: "POST",
-        url: `${BACKEND_URL}/image/profile/`,
-        mode: "cors",
-        params: {
-          memberId,
-        },
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //   },
-        data: formData,
-      });
-      console.log(data);
-    } catch (e) {
-      console.log(e);
+    if (!formData) {
+      return;
     }
+
+    const data = await axios({
+      method: "POST",
+      url: `${BACKEND_URL}/image/profile`,
+      params: {
+        memberId,
+        originalImageName,
+      },
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        setOriginalImageName(e.target.files[0].name);
+        console.log(e.target.files[0].name);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -79,12 +67,18 @@ const UpdateProfileImage = () => {
           type="file"
           name="file"
           accept="image/*"
-          //   onChange={saveImage}
           onChange={(e) => {
             setThumbnail(e.target.files[0]);
           }}
         />
-        <button className="upload_photo_btn">사진등록</button>
+        <button
+          className="upload_photo_btn"
+          // onClick={(e) => {
+          //   e.preventDefault();
+          // }}
+        >
+          사진등록
+        </button>
       </form>
     </div>
   );
