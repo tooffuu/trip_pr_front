@@ -1,10 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { BACKEND_URL } from "../../utils/env";
+import userImage from "../../image/user.png";
+import { userState } from "../../recoil";
+import { useRecoilState } from "recoil";
 
 const UpdateProfileImage = () => {
+  const [user, setUser] = useRecoilState(userState);
   const [imageSrc, setImageSrc] = useState("");
-  const [file, setFile] = useState();
+  const [memberId, setMemberId] = useState(user && user.memberId);
+  const [image, setImaget] = useState();
 
   // 썸네일 추출
   const setThumbnail = (fileBlob) => {
@@ -19,16 +24,44 @@ const UpdateProfileImage = () => {
   };
 
   // 이미지 저장
+  //   const onImgChange = async (e) => {
+  //     e.preventDefault();
+  //     try {
+  //       const formData = new FormData();
+  //       formData.append("file", e.target.files[0]);
+  //       const response = await axios.post(
+  //         `${BACKEND_URL}/image/profile`,
+  //         formData
+  //       );
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+
   const onImgChange = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+
+    // const blob = new Blob([JSON.stringify(e.target.value)], {
+    //   type: "application/json",
+    // });
+
+    // formData.append("data", blob);
     try {
-      const formData = new FormData();
-      formData.append("file", e.target.files[0]);
-      const response = await axios.post(
-        `${BACKEND_URL}/image/profile`,
-        formData
-      );
-      setFile(e.target.files[0]);
+      const data = await axios({
+        method: "POST",
+        url: `${BACKEND_URL}/image/profile/`,
+        mode: "cors",
+        params: {
+          memberId,
+        },
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        data: formData,
+      });
+      console.log(data);
     } catch (e) {
       console.log(e);
     }
@@ -40,13 +73,13 @@ const UpdateProfileImage = () => {
         {/* 이미지 미리보기 */}
         {imageSrc && <img src={imageSrc} alt="preview-img" />}
       </div>
-      <form onSubmit={onImgChange}>
+      <form onChange={onImgChange}>
         <input
           className="file_upload_input"
           type="file"
           name="file"
           accept="image/*"
-          // onChange={onImgChange}
+          //   onChange={saveImage}
           onChange={(e) => {
             setThumbnail(e.target.files[0]);
           }}
