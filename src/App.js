@@ -13,6 +13,7 @@ import FindPw from "./components/sign/FindPw";
 import axios from "axios";
 import { BACKEND_URL } from "./utils/env";
 import { userState } from "./recoil";
+import Photography from "./components/board/Photography";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route path={"/findpw"} exact>
           <FindPw />
+        </Route>
+        <Route path={"/photo"} exact>
+          <Photography />
         </Route>
       </Switch>
     </BrowserRouter>

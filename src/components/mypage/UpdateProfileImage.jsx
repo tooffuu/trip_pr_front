@@ -7,51 +7,101 @@ import { useRecoilState } from "recoil";
 
 const UpdateProfileImage = () => {
   const [user, setUser] = useRecoilState(userState);
-  const [imageSrc, setImageSrc] = useState("");
   const [memberId, setMemberId] = useState(user && user.memberId);
-  const [originalImageName, setOriginalImageName] = useState("");
+  const [imgFile, setImgFile] = useState(null);
+  const [imgBase64, setImgBase64] = useState(userImage);
+  const [originalFileName, setOriginalFileName] = useState("");
 
   // 썸네일 추출
-  const setThumbnail = (fileBlob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
+  // const setThumbnail = (fileBlob) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(fileBlob);
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setImageSrc(reader.result);
+  //       resolve();
+  //     };
+  //   });
+  // };
+
+  // 이미지 미리보기
+  const handleChangeFile = (e) => {
+    setImgFile(e.target.files);
+    setImgBase64([]);
+    for (let i = 0; i < e.target.files.length; i++) {
+      if (e.target.files[i]) {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[i]);
+        reader.onloadend = () => {
+          const base64 = reader.result;
+          if (base64) {
+            const base64Sub = base64.toString();
+            setImgBase64((imgBase64) => [...imgBase64, base64Sub]);
+          }
+        };
+      }
+    }
   };
 
   // 이미지 저장
-  const onImgChange = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
+  // const onImgChange = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("file", e.target.files[0]);
 
-    if (!formData) {
-      return;
+  //   if (!formData) {
+  //     return;
+  //   }
+
+  //   const data = await axios({
+  //     method: "POST",
+  //     url: `${BACKEND_URL}/image/profile`,
+  //     params: {
+  //       memberId,
+  //       originalImageName,
+  //     },
+  //     data: formData,
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       setOriginalImageName(e.target.files[0].name);
+  //       console.log(e.target.files[0].name);
+  //       console.log(response);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
+
+  // 파일 이름 불러오기
+  const fileName = (e) => {
+    setOriginalFileName(e.target.files[0]);
+  };
+  // 이미지 저장 test
+  const uploadImg = async (e) => {
+    const formData = new FormData();
+    for (let i = 0; i < imgFile.length; i++) {
+      formData.append("file", imgFile[i]);
     }
 
-    const data = await axios({
+    await axios({
       method: "POST",
       url: `${BACKEND_URL}/image/profile`,
-      params: {
-        memberId,
-        originalImageName,
-      },
+      params: { memberId },
       data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
     })
       .then((response) => {
-        setOriginalImageName(e.target.files[0].name);
-        console.log(e.target.files[0].name);
-        console.log(response.data);
+        if (response.data) {
+          setImgFile(null);
+          setImgBase64([]);
+          console.log("업로드 완료");
+        }
       })
       .catch((e) => {
         console.log(e);
+        console.log("실패");
       });
   };
 
@@ -59,27 +109,25 @@ const UpdateProfileImage = () => {
     <div className="file_upload_box">
       <div className="file_box">
         {/* 이미지 미리보기 */}
-        {imageSrc && <img src={imageSrc} alt="preview-img" />}
+        {imgBase64 && <img src={imgBase64} alt="preview-img" />}
       </div>
-      <form onChange={onImgChange}>
-        <input
-          className="file_upload_input"
-          type="file"
-          name="file"
-          accept="image/*"
-          onChange={(e) => {
-            setThumbnail(e.target.files[0]);
-          }}
-        />
-        <button
-          className="upload_photo_btn"
-          // onClick={(e) => {
-          //   e.preventDefault();
-          // }}
-        >
-          사진등록
-        </button>
-      </form>
+      {/* <form onChange={onImgChange}> */}
+      <input
+        className="file_upload_input"
+        id="file"
+        type="file"
+        name="file"
+        accept="image/*"
+        // onChange={(e) => {
+        //   setThumbnail(e.target.files[0]);
+        // }}
+        onChange={handleChangeFile}
+        multiple
+      />
+      <button className="upload_photo_btn" onClick={uploadImg}>
+        사진등록
+      </button>
+      {/* </form> */}
     </div>
   );
 };

@@ -17,8 +17,12 @@ const Home = () => {
       <div className="main_body">
         <div className="main_container">
           <div className="main_top_contents">
-            <div className="main_top_home">홈</div>
-            <div className="main_top_photo">사진자랑</div>
+            <div className="main_top_home">
+              <a href="/">홈</a>
+            </div>
+            <div className="main_top_photo">
+              <a href="/photo">사진자랑</a>
+            </div>
             <div className="main_top_route">코스공유</div>
             <div className="main_top_mytrip">내 여행지</div>
             <div className="main_top_ticket">티켓판매</div>
