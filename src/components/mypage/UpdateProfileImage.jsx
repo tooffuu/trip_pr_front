@@ -12,18 +12,6 @@ const UpdateProfileImage = () => {
   const [imgBase64, setImgBase64] = useState(userImage);
   const [originalFileName, setOriginalFileName] = useState("");
 
-  // 썸네일 추출
-  // const setThumbnail = (fileBlob) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(fileBlob);
-  //   return new Promise((resolve) => {
-  //     reader.onload = () => {
-  //       setImageSrc(reader.result);
-  //       resolve();
-  //     };
-  //   });
-  // };
-
   // 이미지 미리보기
   const handleChangeFile = (e) => {
     setImgFile(e.target.files);
@@ -43,42 +31,6 @@ const UpdateProfileImage = () => {
     }
   };
 
-  // 이미지 저장
-  // const onImgChange = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("file", e.target.files[0]);
-
-  //   if (!formData) {
-  //     return;
-  //   }
-
-  //   const data = await axios({
-  //     method: "POST",
-  //     url: `${BACKEND_URL}/image/profile`,
-  //     params: {
-  //       memberId,
-  //       originalImageName,
-  //     },
-  //     data: formData,
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       setOriginalImageName(e.target.files[0].name);
-  //       console.log(e.target.files[0].name);
-  //       console.log(response);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
-
-  // 파일 이름 불러오기
-  const fileName = (e) => {
-    setOriginalFileName(e.target.files[0]);
-  };
   // 이미지 저장 test
   const uploadImg = async (e) => {
     const formData = new FormData();
@@ -96,12 +48,11 @@ const UpdateProfileImage = () => {
         if (response.data) {
           setImgFile(null);
           setImgBase64([]);
-          console.log("업로드 완료");
+          alert("등록되었습니다.");
         }
       })
       .catch((e) => {
         console.log(e);
-        console.log("실패");
       });
   };
 
@@ -111,23 +62,18 @@ const UpdateProfileImage = () => {
         {/* 이미지 미리보기 */}
         {imgBase64 && <img src={imgBase64} alt="preview-img" />}
       </div>
-      {/* <form onChange={onImgChange}> */}
       <input
         className="file_upload_input"
         id="file"
         type="file"
         name="file"
         accept="image/*"
-        // onChange={(e) => {
-        //   setThumbnail(e.target.files[0]);
-        // }}
         onChange={handleChangeFile}
         multiple
       />
       <button className="upload_photo_btn" onClick={uploadImg}>
         사진등록
       </button>
-      {/* </form> */}
     </div>
   );
 };

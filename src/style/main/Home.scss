@@ -39,8 +39,10 @@
   display: inline-block;
 }
 .popular_contents_p {
-  margin-bottom: 15px;
+  position: relative;
+  margin-bottom: 10px;
   font-weight: bold;
+  top: -8px;
 }
 .home_top_title {
   margin-bottom: 60px;

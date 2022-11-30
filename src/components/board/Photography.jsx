@@ -1,16 +1,15 @@
 import React from "react";
 import "../../style/board/Photography.scss";
-import photo001 from "../../image/photo001.jpg";
-import photo002 from "../../image/photo002.jpg";
-import resort001 from "../../image/resort001.jpg";
-import tour001 from "../../image/tour001.PNG";
-import food001 from "../../image/food001.jpg";
-import food002 from "../../image/food002.jpg";
-import trip001 from "../../image/trip001.jpg";
-import trip002 from "../../image/trip002.jpg";
 import Topbar2 from "../main/Topbar2";
+import photo001 from "../../image/photo001.jpg";
+import profile from "../../image/profile.png";
+import dog from "../../image/dog.jpg";
+import { useRecoilState } from "recoil";
+import { userState } from "../../recoil";
 
 const Photography = () => {
+  const [user, setUser] = useRecoilState(userState);
+
   return (
     <>
       <Topbar2 />
@@ -27,10 +26,210 @@ const Photography = () => {
           </div>
           <div className="main_home_contents">
             <div className="popular_contents">
-              <p className="popular_contents_p">사진자랑</p>
-              <button className="board_write_button">글쓰기</button>
+              <p className="popular_contents_p">사진자랑 🦝</p>
+              <button className="board_write_button">글 작성하기</button>
             </div>
-            <div className="board_background">게시판 목록 리스트</div>
+            <div className="button_list">
+              <select name="zone" className="zone_list">
+                <option value="all">전국</option>
+                <option value="seoul">서울</option>
+                <option value="gyeonggi">경기</option>
+                <option value="gangwon">강원</option>
+                <option value="chungnam_daejeon">충남·대전</option>
+                <option value="chungbuk">충북</option>
+                <option value="gwangju">전남·광주</option>
+                <option value="jeonbuk">전북</option>
+                <option value="gyeongnam">경남</option>
+                <option value="daegu">경북·대구</option>
+                <option value="jeju">제주</option>
+              </select>
+            </div>
+            <div className="board_background">
+              {/* 글 하나 시작 */}
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              {/* 글 하나 끝 */}
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={dog} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={dog} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={dog} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={dog} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+              <div className="board_wrap">
+                <div className="board_wrap_writter">
+                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <p className="board_wrap_nick">
+                    {user && `${user.nickname}`}
+                    {/* 유저 닉네임 */}
+                  </p>
+                </div>
+                <div className="board_list">
+                  <img className="board_list_photo" src={photo001} alt="12" />
+                  <p className="board_list_content">글 내용 첫 문장만</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

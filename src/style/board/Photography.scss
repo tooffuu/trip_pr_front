@@ -4,18 +4,89 @@
 .main_top_highlight {
   color: rgb(104, 200, 238);
 }
-.popular_contents {
-}
 .board_write_button {
+  font-family: "Pretendard-Regular";
+  background-color: rgba(104, 200, 238, 0.3);
   position: absolute;
-  top: 100px;
-  right: 50px;
+  top: 50px;
+  right: 80px;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.board_write_button:active {
+  position: absolute;
+  top: 51px;
 }
 .board_background {
-  border: 1px solid black;
-  width: 90%;
+  // border: 1px solid rgb(150, 150, 150);
+  width: 91%;
   position: relative;
-  left: 30px;
-  top: 110px;
-  height: 800px;
+  left: 20px;
+  top: 60px;
+  min-height: 800px;
+  height: 100%;
+}
+.button_list > select {
+  font-family: "Pretendard-Regular";
+  position: relative;
+  background-color: rgba(216, 216, 216, 0.5);
+  border: 0px;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  font-size: 15px;
+  left: 15px;
+  top: 10px;
+}
+.button_list > select > option {
+  background-color: white;
+}
+
+// 게시판 글 목록
+.board_wrap {
+  display: inline-block;
+  max-width: 28%;
+  margin-bottom: 15px;
+}
+.board_wrap:nth-child(n) {
+  margin-left: 35px;
+}
+.board_wrap_writter {
+  display: inline-flex;
+  position: relative;
+  top: -5px;
+  left: 5px;
+}
+.board_wrap_profile {
+  position: relative;
+  top: 8px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.board_wrap_nick {
+  position: relative;
+  left: 10px;
+}
+.board_list_photo {
+  width: 98%;
+  position: relative;
+  left: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.board_list_photo:hover ~ .board_list_content {
+  color: gray;
+}
+
+.board_list_content {
+  display: inline-block;
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+}
+.board_list_content:hover {
+  color: gray;
 }

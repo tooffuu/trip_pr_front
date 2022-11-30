@@ -123,7 +123,7 @@ const SignUp = () => {
                 </button>
               </form>
               <div className="fast_signUp">
-                <p>👉 1초만에 가입하기</p>
+                <p>👉 3초만에 가입하기</p>
                 <div className="kakaoSign">
                   <img src={kakao} alt="" />
                 </div>

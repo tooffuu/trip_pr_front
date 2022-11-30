@@ -96,7 +96,7 @@ const Profile = () => {
                   <input
                     type="text"
                     spellCheck={false}
-                    value={nickname}
+                    value={user && nickname}
                     onChange={(e) => {
                       setNickname(e.target.value);
                     }}
