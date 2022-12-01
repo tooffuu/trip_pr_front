@@ -1,7 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import Home from "./components/main/Home";
 import Login from "./components/sign/Login";
 import SignUp from "./components/sign/SignUp";
@@ -10,9 +8,6 @@ import Profile from "./components/mypage/Profile";
 import CheckPw from "./components/mypage/CheckPw";
 import FindId from "./components/sign/FindId";
 import FindPw from "./components/sign/FindPw";
-import axios from "axios";
-import { BACKEND_URL } from "./utils/env";
-import { userState } from "./recoil";
 import Photography from "./components/board/Photography";
 
 function App() {

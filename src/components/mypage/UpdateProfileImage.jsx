@@ -1,16 +1,18 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BACKEND_URL } from "../../utils/env";
-import userImage from "../../image/user.png";
-import { userState } from "../../recoil";
+import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 
 const UpdateProfileImage = () => {
   const [user, setUser] = useRecoilState(userState);
   const [memberId, setMemberId] = useState(user && user.memberId);
   const [imgFile, setImgFile] = useState(null);
-  const [imgBase64, setImgBase64] = useState(userImage);
-  const [originalFileName, setOriginalFileName] = useState("");
+  const [imgBase64, setImgBase64] = useState("");
+  const [imgList, setImgList] = useState([]);
+  const [profileImg, setProfileImg] = useRecoilState(profileState);
+
+  const imagePath = process.env.PUBLIC_URL + "/assets/";
 
   // 이미지 미리보기
   const handleChangeFile = (e) => {
@@ -31,17 +33,21 @@ const UpdateProfileImage = () => {
     }
   };
 
-  // 이미지 저장 test
+  // 프로필 이미지 db저장
   const uploadImg = async (e) => {
     const formData = new FormData();
     for (let i = 0; i < imgFile.length; i++) {
       formData.append("file", imgFile[i]);
     }
-
     await axios({
       method: "POST",
       url: `${BACKEND_URL}/image/profile`,
-      params: { memberId },
+      params: {
+        memberId,
+      },
+      headers: {
+        "Content-Type": `multipart/form-data`,
+      },
       data: formData,
     })
       .then((response) => {
@@ -56,11 +62,34 @@ const UpdateProfileImage = () => {
       });
   };
 
+  // 이미지 불러오기
+  const showProfileImage = async (e) => {
+    const data = await axios({
+      url: `${BACKEND_URL}/image/showProfile/${memberId}`,
+      method: "GET",
+    })
+      .then((response) => {
+        setImgList(imagePath + response.data);
+        setProfileImg(imagePath + response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    showProfileImage();
+  }, []);
+
   return (
     <div className="file_upload_box">
       <div className="file_box">
         {/* 이미지 미리보기 */}
-        {imgBase64 && <img src={imgBase64} alt="preview-img" />}
+        {imgBase64 ? (
+          <img src={imgBase64} alt="preview-img" />
+        ) : (
+          <img src={imgList} />
+        )}
       </div>
       <input
         className="file_upload_input"

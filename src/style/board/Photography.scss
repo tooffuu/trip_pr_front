@@ -44,6 +44,13 @@
 .button_list > select > option {
   background-color: white;
 }
+// 글쓴이 표시
+.board_wrap_profile {
+  cursor: pointer;
+}
+.board_wrap_nick {
+  cursor: pointer;
+}
 
 // 게시판 글 목록
 .board_wrap {

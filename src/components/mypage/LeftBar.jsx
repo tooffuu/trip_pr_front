@@ -1,11 +1,11 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { userState } from "../../recoil";
+import { profileState, userState } from "../../recoil";
 import "../../style/mypage/LeftBar.scss";
-import profile from "../../image/profile.png";
 
 const LeftBar = () => {
   const [user, setUser] = useRecoilState(userState);
+  const [profileImg, setProfileImg] = useRecoilState(profileState);
 
   return (
     <>
@@ -13,7 +13,7 @@ const LeftBar = () => {
         <div className="leftbar_container">
           <div className="leftbar_container_wrap">
             <div className="leftbar_profile">
-              <img className="left_mypic" src={profile} alt="" />
+              <img className="left_mypic" src={profileImg} alt="" />
               {user ? (
                 <p className="left_mynick">{user.nickname}</p>
               ) : (

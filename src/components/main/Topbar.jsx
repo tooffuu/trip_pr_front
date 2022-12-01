@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { userState } from "../../recoil";
+import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 import "../../style/main/Topbar.scss";
 import profile from "../../image/profile.png";
@@ -7,6 +7,9 @@ import { FiBell } from "react-icons/fi";
 
 const Topbar = () => {
   const [user, setUser] = useRecoilState(userState);
+  const [profileImg, setProfileImg] = useRecoilState(profileState);
+
+  console.log(profileImg);
 
   return (
     <div className="bar_body">
@@ -55,7 +58,7 @@ const Topbar = () => {
                     window.location.href = "/myprofile";
                   }}
                   className="userImg"
-                  src={profile}
+                  src={profileImg}
                 />
                 <div className="nonfication_icon">
                   <FiBell />
