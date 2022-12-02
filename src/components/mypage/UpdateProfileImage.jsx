@@ -5,6 +5,7 @@ import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 
 const UpdateProfileImage = () => {
+  const [id, setId] = useState("");
   const [user, setUser] = useRecoilState(userState);
   const [memberId, setMemberId] = useState(user && user.memberId);
   const [imgFile, setImgFile] = useState(null);
@@ -55,6 +56,7 @@ const UpdateProfileImage = () => {
           setImgFile(null);
           setImgBase64([]);
           alert("등록되었습니다.");
+          window.location.href = "/myprofile";
         }
       })
       .catch((e) => {
@@ -69,8 +71,8 @@ const UpdateProfileImage = () => {
       method: "GET",
     })
       .then((response) => {
-        setImgList(imagePath + response.data);
-        setProfileImg(imagePath + response.data);
+        setImgList(response.data);
+        setProfileImg(imagePath + response.data.imageName);
       })
       .catch((e) => {
         console.log(e);
@@ -81,6 +83,24 @@ const UpdateProfileImage = () => {
     showProfileImage();
   }, []);
 
+  // 기본 이미지로 변경하기
+  const setBasicImage = async (e) => {
+    if (window.confirm("기본 이미지로 변경하시겠습니까?")) {
+      e.preventDefault();
+      try {
+        const data = await axios({
+          url: `${BACKEND_URL}/image/deleteProfile/${imgList.id}`,
+          method: "DELETE",
+          data: { id },
+        });
+        alert("변경되었습니다.");
+        window.location.href = "/myprofile";
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   return (
     <div className="file_upload_box">
       <div className="file_box">
@@ -88,7 +108,7 @@ const UpdateProfileImage = () => {
         {imgBase64 ? (
           <img src={imgBase64} alt="preview-img" />
         ) : (
-          <img src={imgList} />
+          <img src={profileImg} />
         )}
       </div>
       <input
@@ -100,9 +120,17 @@ const UpdateProfileImage = () => {
         onChange={handleChangeFile}
         multiple
       />
-      <button className="upload_photo_btn" onClick={uploadImg}>
-        사진등록
-      </button>
+      <div className="photo_button">
+        <button className="upload_photo_btn" onClick={uploadImg}>
+          사진등록
+        </button>
+        <button
+          className="upload_photo_btn set_basic_profile"
+          onClick={setBasicImage}
+        >
+          기본이미지로 변경
+        </button>
+      </div>
     </div>
   );
 };

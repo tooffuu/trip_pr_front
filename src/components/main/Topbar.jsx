@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 import "../../style/main/Topbar.scss";
-import profile from "../../image/profile.png";
 import { FiBell } from "react-icons/fi";
+import axios from "axios";
+import { BACKEND_URL } from "../../utils/env";
 
 const Topbar = () => {
   const [user, setUser] = useRecoilState(userState);
   const [profileImg, setProfileImg] = useRecoilState(profileState);
+  const [memberId, setMemberId] = useState(user && user.memberId);
 
-  console.log(profileImg);
+  const imagePath = process.env.PUBLIC_URL + "/assets/";
+
+  // 이미지 불러오기
+  const showProfileImage = async (e) => {
+    const data = await axios({
+      url: `${BACKEND_URL}/image/showProfile/${memberId}`,
+      method: "GET",
+    })
+      .then((response) => {
+        setProfileImg(imagePath + response.data.imageName);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    showProfileImage();
+  }, []);
 
   return (
     <div className="bar_body">
