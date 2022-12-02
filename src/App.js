@@ -9,6 +9,7 @@ import CheckPw from "./components/mypage/CheckPw";
 import FindId from "./components/sign/FindId";
 import FindPw from "./components/sign/FindPw";
 import Photography from "./components/board/Photography";
+import WritePhoto from "./components/board/WritePhoto";
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path={"/photo"} exact>
           <Photography />
+        </Route>
+        <Route path={"/photo/write"} exact>
+          <WritePhoto />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -5,10 +5,11 @@ import photo001 from "../../image/photo001.jpg";
 import profile from "../../image/profile.png";
 import dog from "../../image/dog.jpg";
 import { useRecoilState } from "recoil";
-import { userState } from "../../recoil";
+import { profileState, userState } from "../../recoil";
 
 const Photography = () => {
   const [user, setUser] = useRecoilState(userState);
+  const [profileImg, setProfileImg] = useRecoilState(profileState);
 
   return (
     <>
@@ -27,7 +28,14 @@ const Photography = () => {
           <div className="main_home_contents">
             <div className="popular_contents">
               <p className="popular_contents_p">사진자랑 🦝</p>
-              <button className="board_write_button">글 작성하기</button>
+              <button
+                className="board_write_button"
+                onClick={() => {
+                  window.location.href = "/photo/write";
+                }}
+              >
+                글 작성하기
+              </button>
             </div>
             <div className="button_list">
               <select name="zone" className="zone_list">
@@ -48,7 +56,7 @@ const Photography = () => {
               {/* 글 하나 시작 */}
               <div className="board_wrap">
                 <div className="board_wrap_writter">
-                  <img className="board_wrap_profile" src={profile} alt="" />
+                  <img className="board_wrap_profile" src={profileImg} alt="" />
                   <p className="board_wrap_nick">
                     {user && `${user.nickname}`}
                     {/* 유저 닉네임 */}
