@@ -1,0 +1,85 @@
+.photo_background {
+  //   border: 1px solid red;
+  position: relative;
+  top: -30px;
+  min-height: 800px;
+}
+.photo_board_list {
+  width: 950px;
+  position: relative;
+  margin: 0 auto;
+  min-height: 800px;
+}
+.follow_user {
+  display: inline-flex;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  height: 50px;
+  //   border: 1px solid red;
+  width: 300px;
+}
+.post_writer {
+  // border 값 지우지 말기
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 11.5px 8px;
+  padding-bottom: 0;
+  margin-left: 6px;
+  height: 37px;
+  font-size: 1.2rem;
+}
+.follow_btn {
+  position: relative;
+  border: 1px solid rgb(193, 193, 193);
+  background-color: rgba(123, 162, 236, 0.7);
+  border-radius: 10px;
+  padding: 3px 7px;
+  padding-bottom: 0;
+  margin-top: 11px;
+  margin-left: 3px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.follow_btn:active {
+  position: relative;
+  top: 1px;
+  left: 0.5px;
+}
+.followline {
+  position: relative;
+  top: -2px;
+  left: 5px;
+  color: rgb(193, 193, 193);
+}
+.post_region {
+  color: rgb(154, 154, 154);
+  position: relative;
+  left: 12px;
+  top: 14px;
+}
+.post_view_count {
+  position: relative;
+  display: inline-flex;
+  left: 500px;
+}
+.post_likes {
+  margin-left: 18px;
+}
+.post_content {
+  position: relative;
+  top: 20px;
+  min-height: 200px;
+}
+.content_box {
+  border-top: 1px solid rgba(156, 156, 156, 0.2);
+  min-height: 500px;
+}
+.post_hr {
+  position: relative;
+  border-top: 0.3px solid rgba(156, 156, 156, 0.6);
+}
+.commentList {
+  margin-top: 10px;
+  margin-left: 3px;
+}

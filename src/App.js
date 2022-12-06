@@ -8,8 +8,9 @@ import Profile from "./components/mypage/Profile";
 import CheckPw from "./components/mypage/CheckPw";
 import FindId from "./components/sign/FindId";
 import FindPw from "./components/sign/FindPw";
-import Photography from "./components/board/Photography";
 import WritePhoto from "./components/board/WritePhoto";
+import Photography from "./components/board/photography/Photography";
+import DetailPhoto from "./components/board/photography/DetailPhoto";
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path={"/photo/write"} exact>
           <WritePhoto />
+        </Route>
+        <Route path={"/photo/:postId"} exact>
+          <DetailPhoto />
         </Route>
       </Switch>
     </BrowserRouter>

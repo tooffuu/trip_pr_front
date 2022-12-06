@@ -16,12 +16,11 @@
   padding: 10px 20px;
   cursor: pointer;
 }
-.board_write_button:active {
+.board_write_active:active {
   position: absolute;
   top: 51px;
 }
 .board_background {
-  // border: 1px solid rgb(150, 150, 150);
   width: 91%;
   position: relative;
   left: 20px;
