@@ -134,6 +134,11 @@ const QuillEditor = () => {
 
   return (
     <>
+      {/* <button
+    onClick ={(e) => {
+
+    }}
+    ></button> */}
       <form onSubmit={getPost}>
         <div className="write_back">
           <select

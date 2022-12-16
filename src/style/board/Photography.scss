@@ -90,10 +90,9 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.board_list_photo:hover ~ .board_list_content {
+.photo_wrapper:hover ~ .board_list_content {
   color: gray;
 }
-
 .board_list_content {
   display: inline-block;
   color: rgb(71, 71, 71);

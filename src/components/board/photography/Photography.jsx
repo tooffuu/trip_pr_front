@@ -10,6 +10,8 @@ import "../../../style/board/Photography.scss";
 const Photography = () => {
   const [user, setUser] = useRecoilState(userState);
   const [photoPosts, setPhotoPosts] = useState([]);
+  const [photoPostByRegion, setPhotoPostByRegion] = useState([]);
+  const [region, setRegion] = useState("");
 
   useEffect(() => {
     const getData = async (e) => {
@@ -21,6 +23,23 @@ const Photography = () => {
     };
     getData();
   }, []);
+
+  const onRegionChange = (e) => {
+    setRegion(e.target.value);
+  };
+
+  const showPostByRegion = async (e) => {
+    const data = await axios({
+      url: `${BACKEND_URL}/board/photo/re?region=${region}`,
+      method: "GET",
+    })
+      .then((response) => {
+        setPhotoPostByRegion(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <>
@@ -55,24 +74,35 @@ const Photography = () => {
                 글 작성하기
               </button>
             </div>
+            {/* <button onClick={showPostByRegion}>클릭</button> */}
             {/* 카테고리 선택 */}
             <div className="button_list">
-              <select name="zone" className="zone_list">
+              <select
+                name="zone"
+                className="zone_list_write"
+                value={region}
+                onChange={onRegionChange}
+                onClick={showPostByRegion}
+              >
                 <option value="all">전국</option>
-                <option value="seoul">서울</option>
-                <option value="gyeonggi">경기</option>
-                <option value="gangwon">강원</option>
-                <option value="chungnam_daejeon">충남·대전</option>
-                <option value="chungbuk">충북</option>
-                <option value="gwangju">전남·광주</option>
-                <option value="jeonbuk">전북</option>
-                <option value="gyeongnam">경남</option>
-                <option value="daegu">경북·대구</option>
-                <option value="jeju">제주</option>
+                <option value="서울">서울</option>
+                <option value="경기">경기</option>
+                <option value="강원">강원</option>
+                <option value="충남·대전">충남·대전</option>
+                <option value="충북">충북</option>
+                <option value="전남·광주">전남·광주</option>
+                <option value="전북">전북</option>
+                <option value="경남">경남</option>
+                <option value="경북·대구">경북·대구</option>
+                <option value="제주">제주</option>
               </select>
             </div>
             <div className="board_background">
-              <PhotographyList photoPosts={photoPosts} />
+              <PhotographyList
+                photoPosts={photoPosts}
+                region={region}
+                photoPostByRegion={photoPostByRegion}
+              />
             </div>
           </div>
         </div>

@@ -3,37 +3,62 @@ import { useRecoilState } from "recoil";
 import photo001 from "../../../image/photo001.jpg";
 import { profileState } from "../../../recoil";
 
-const PhotographyListItem = ({ photoPost }) => {
+const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
   const [profileImg, setProfileImg] = useRecoilState(profileState);
   const imagePath = process.env.PUBLIC_URL + "/assets/";
-  const profileImgUrl = imagePath + photoPost.member.profile_img_name;
-
-  console.log(photoPost.boardImageList[0].imgUrl);
+  const profileImgUrl = imagePath + photoPost?.member.profile_img_name;
+  const profileImgUrlByRegion =
+    imagePath + photoPostByRegion?.member.profile_img_name;
 
   return (
     <>
-      <div className="board_wrap">
-        <div className="board_wrap_writter">
-          <img
-            className="board_wrap_profile post_writerImg"
-            src={profileImgUrl}
-          />
-          <p className="board_wrap_nick">{photoPost.member.nickname}</p>
-        </div>
-        <div className="board_list">
-          <div className="photo_wrapper">
+      {region === "all" || region === "" ? (
+        <div className="board_wrap">
+          <div className="board_wrap_writter">
             <img
-              className="board_list_photo"
-              // src={photo001}
-              src={photoPost?.boardImageList[0].imgUrl}
-              onClick={() => {
-                window.location.href = `/photo/${photoPost.postId}`;
-              }}
+              className="board_wrap_profile post_writerImg"
+              src={profileImgUrl}
             />
+            <p className="board_wrap_nick">{photoPost.member.nickname}</p>
           </div>
-          <p className="board_list_content">{photoPost.title}</p>
+          <div className="board_list">
+            <div className="photo_wrapper">
+              <img
+                className="board_list_photo"
+                src={photoPost?.boardImageList[0].imgUrl}
+                onClick={() => {
+                  window.location.href = `/photo/${photoPost.postId}`;
+                }}
+              />
+            </div>
+            <p className="board_list_content">{photoPost.title}</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="board_wrap">
+          <div className="board_wrap_writter">
+            <img
+              className="board_wrap_profile post_writerImg"
+              src={profileImgUrlByRegion}
+            />
+            <p className="board_wrap_nick">
+              {photoPostByRegion.member.nickname}
+            </p>
+          </div>
+          <div className="board_list">
+            <div className="photo_wrapper">
+              <img
+                className="board_list_photo"
+                src={photoPostByRegion?.boardImageList[0].imgUrl}
+                onClick={() => {
+                  window.location.href = `/photo/${photoPostByRegion.postId}`;
+                }}
+              />
+            </div>
+            <p className="board_list_content">{photoPostByRegion.title}</p>
+          </div>
+        </div>
+      )}
     </>
   );
 };
