@@ -28,7 +28,6 @@ const DetailPhoto = () => {
   const profileImgUrl = imagePath + photoPost.member?.profile_img_name;
 
   // 게시글 삭제
-
   const deletePost = async (e) => {
     if (window.confirm("삭제하시겠습니까?")) {
       e.preventDefault();
@@ -83,6 +82,7 @@ const DetailPhoto = () => {
                   <p>👀 ({photoPost.view_count})</p>
                   <p className="post_likes">👍 ({photoPost.view_count})</p>
                 </div>
+                <p className="modified_date">{photoPost.modifiedDate}</p>
                 <div className="post_content">
                   <div
                     className="content_box"
@@ -93,7 +93,14 @@ const DetailPhoto = () => {
                 </div>
                 {user && user.memberId === photoPost.member?.memberId && (
                   <div className="post_edit_button">
-                    <button>수정</button>
+                    <button
+                      className="post_edit_btn"
+                      onClick={() => {
+                        window.location.href = `/photo/write/${postId}`;
+                      }}
+                    >
+                      수정
+                    </button>
                     <button onClick={deletePost}>삭제</button>
                   </div>
                 )}

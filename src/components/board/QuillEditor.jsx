@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../../recoil";
 import { BACKEND_URL } from "../../utils/env";
@@ -14,6 +15,13 @@ const QuillEditor = () => {
   const [imageIdList, setImageIdList] = useState([]);
   const quillRef = useRef();
   const formData = new FormData();
+
+  // 글 수정 함수
+  const { postId } = useParams();
+  const [postDt, setPostDt] = useState("");
+  const [editRegion, setEditRegion] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
 
   // 이미지 핸들러
   const imageHandler = () => {
@@ -38,7 +46,9 @@ const QuillEditor = () => {
         //이미지 리스트 배열
         setImageIdList((prev) => prev.concat(data.data.id));
       } catch (e) {
-        console.log(e);
+        if (file.size > 1048576) {
+          alert("이미지 사이즈가 너무 큽니다.");
+        }
       }
     });
   };
@@ -80,15 +90,23 @@ const QuillEditor = () => {
     "background",
     "image",
   ];
+  // react-quill & 커스텀 툴바 끝
 
   const handleText = (contents) => {
     setContent(contents);
   };
-  // react-quill & 커스텀 툴바 끝
+
+  const editHandleText = (editContent) => {
+    setEditContent(editContent);
+  };
 
   // select value 값 넘기기
   const onRegionChange = (e) => {
     setRegion(e.target.value);
+  };
+
+  const editOnRegionChange = (e) => {
+    setEditRegion(e.target.value);
   };
 
   // 글 작성
@@ -132,20 +150,68 @@ const QuillEditor = () => {
     }
   };
 
+  // 글 수정
+
+  // id에 맞는 글 가져오기
+  const postEdit = async () => {
+    const data = await axios({
+      url: `${BACKEND_URL}/board/photo/${postId}`,
+      method: "GET",
+    });
+    // setPostDt(data.data);
+    setEditTitle(data.data.title);
+    setEditContent(data.data.content);
+    setEditRegion(data.data.region);
+  };
+
+  useEffect(() => {
+    postId && postEdit();
+  }, []);
+
+  const updatePost = async (e) => {
+    e.preventDefault();
+    if (window.confirm("등록하시겠습니까?")) {
+      if (editTitle === "") {
+        alert("제목을 입력해주세요.");
+        return;
+      } else if (editContent === "") {
+        alert("내용을 입력해주세요.");
+        return;
+      } else if (editRegion === "") {
+        alert("카테고리를 선택해주세요.");
+        return;
+      }
+      try {
+        formData.append("region", editRegion);
+        formData.append("title", editTitle);
+        formData.append("content", editContent);
+        formData.append("imageIdList", imageIdList);
+        const data = await axios({
+          url: `${BACKEND_URL}/board/edit/${postId}`,
+          method: "PATCH",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data: formData,
+        });
+        window.location.href = "/photo";
+        alert("수정 완료");
+      } catch (e) {
+        console.log(e);
+        alert("작성 실패");
+      }
+    }
+  };
+
   return (
     <>
-      {/* <button
-    onClick ={(e) => {
-
-    }}
-    ></button> */}
-      <form onSubmit={getPost}>
+      <form onSubmit={postId ? updatePost : getPost}>
         <div className="write_back">
           <select
             name="zone"
             className="zone_list_write"
-            value={region}
-            onChange={onRegionChange}
+            value={postId ? editRegion : region}
+            onChange={postId ? editOnRegionChange : onRegionChange}
           >
             <option value="selectRegion">지역선택</option>
             <option value="서울">서울</option>
@@ -165,9 +231,9 @@ const QuillEditor = () => {
             type="text"
             className="board_title"
             placeholder="제목을 입력하세요"
-            value={title}
+            value={postId ? editTitle : title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              postId ? setEditTitle(e.target.value) : setTitle(e.target.value);
             }}
           />
         </div>
@@ -177,18 +243,29 @@ const QuillEditor = () => {
             ref={quillRef}
             modules={modules}
             formats={formats}
-            content={content}
-            onChange={handleText}
+            value={postId ? editContent : content}
+            onChange={postId ? editHandleText : handleText}
           />
         </div>
-        <button className="editor_write_btn editor_write_done">
-          작성 완료
-        </button>
+        {postId ? (
+          <button className="editor_write_btn editor_write_done">
+            수정 완료
+          </button>
+        ) : (
+          <button className="editor_write_btn editor_write_done">
+            작성 완료
+          </button>
+        )}
       </form>
       <button
         className="editor_write_btn editor_write_cancel"
         onClick={() => {
-          if (title.length !== 0 || content.length !== 0) {
+          if (
+            title.length !== 0 ||
+            content.length !== 0 ||
+            editTitle?.length !== 0 ||
+            editContent?.length !== 0
+          ) {
             if (window.confirm("작성을 취소하시겠습니까?")) {
               window.location.href = "/photo";
             }

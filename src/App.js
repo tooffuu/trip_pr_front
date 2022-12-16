@@ -10,6 +10,9 @@ import FindPw from "./components/sign/FindPw";
 import WritePhoto from "./components/board/WritePhoto";
 import Photography from "./components/board/photography/Photography";
 import DetailPhoto from "./components/board/photography/DetailPhoto";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "./utils/env";
 
 function App() {
   return (
@@ -40,6 +43,9 @@ function App() {
           <Photography />
         </Route>
         <Route path={"/photo/write"} exact>
+          <WritePhoto />
+        </Route>
+        <Route path={"/photo/write/:postId"} exact>
           <WritePhoto />
         </Route>
         <Route path={"/photo/:postId"} exact>

@@ -29,6 +29,9 @@ const PhotographyList = ({ photoPosts, region, photoPostByRegion }) => {
           ))}
         </div>
       )}
+      {region === "all" ||
+        region === "" ||
+        (photoPostByRegion.length === 0 && <div>게시글이 없습니다. 😥</div>)}
     </>
   );
 };

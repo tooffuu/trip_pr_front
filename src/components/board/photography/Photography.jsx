@@ -74,7 +74,6 @@ const Photography = () => {
                 글 작성하기
               </button>
             </div>
-            {/* <button onClick={showPostByRegion}>클릭</button> */}
             {/* 카테고리 선택 */}
             <div className="button_list">
               <select
