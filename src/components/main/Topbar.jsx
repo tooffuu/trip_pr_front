@@ -3,24 +3,25 @@ import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 import "../../style/main/Topbar.scss";
 import { FiBell } from "react-icons/fi";
-import axios from "axios";
 import { BACKEND_URL } from "../../utils/env";
+import axios from "axios";
 
 const Topbar = () => {
   const [user, setUser] = useRecoilState(userState);
   const [profileImg, setProfileImg] = useRecoilState(profileState);
   const [memberId, setMemberId] = useState(user && user.memberId);
+  const [id, setId] = useState(user && user.id);
 
+  // recoilState 사용하여 profileImg안에 user의 profileImg 경로 담음
   const imagePath = process.env.PUBLIC_URL + "/assets/";
 
-  // 이미지 불러오기
   const showProfileImage = async (e) => {
     const data = await axios({
-      url: `${BACKEND_URL}/image/showProfile/${memberId}`,
+      url: `${BACKEND_URL}/member/${id}`,
       method: "GET",
     })
       .then((response) => {
-        setProfileImg(imagePath + response.data.imageName);
+        setProfileImg(imagePath + response.data.profile_img_name);
       })
       .catch((e) => {
         console.log(e);
@@ -28,8 +29,19 @@ const Topbar = () => {
   };
 
   useEffect(() => {
-    showProfileImage();
+    user && showProfileImage();
   }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const data = await axios({
+  //       url: `${BACKEND_URL}/member/${id}`,
+  //       method: "GET",
+  //     });
+  //     setProfileImg(imagePath + data.data.profile_img_name);
+  //   };
+  //   getData();
+  // });
 
   return (
     <div className="bar_body">

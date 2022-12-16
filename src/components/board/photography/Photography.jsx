@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import "../../../style/board/Photography.scss";
-import Topbar2 from "../../main/Topbar2";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil";
-import PhotographyList from "./PhotographyList";
-import { useEffect } from "react";
-import axios from "axios";
 import { BACKEND_URL } from "../../../utils/env";
+import Topbar2 from "../../main/Topbar2";
+import PhotographyList from "./PhotographyList";
+import "../../../style/board/Photography.scss";
 
 const Photography = () => {
   const [user, setUser] = useRecoilState(userState);

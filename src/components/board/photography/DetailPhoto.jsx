@@ -6,12 +6,12 @@ import { BACKEND_URL } from "../../../utils/env";
 import Topbar from "../../main/Topbar";
 import "../../../style/board/DetailPhoto.scss";
 import { useRecoilState } from "recoil";
-import { profileState } from "../../../recoil";
+import { userState } from "../../../recoil";
 
 const DetailPhoto = () => {
   const { postId } = useParams();
-  const [profileImage, setProfileImage] = useRecoilState(profileState);
-  const [photoPost, setPhotoPost] = useState({});
+  const [user, setUser] = useRecoilState(userState);
+  const [photoPost, setPhotoPost] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,6 +23,29 @@ const DetailPhoto = () => {
     };
     getData();
   }, []);
+
+  const imagePath = process.env.PUBLIC_URL + "/assets/";
+  const profileImgUrl = imagePath + photoPost.member?.profile_img_name;
+
+  console.log(photoPost);
+
+  // 게시글 삭제
+
+  const deletePost = async (e) => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      e.preventDefault();
+      try {
+        const data = await axios({
+          url: `${BACKEND_URL}/board/photo/${postId}`,
+          method: "DELETE",
+        });
+        alert("삭제 완료");
+        window.location.href = "/photo";
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
   return (
     <>
@@ -44,11 +67,18 @@ const DetailPhoto = () => {
             <div className="photo_background">
               <div className="photo_board_list">
                 <div className="follow_user">
-                  <img className="board_wrap_profile" src={profileImage} />
-                  <div className="post_writer">{photoPost.writer}</div>
-                  <div className="follow_btn">팔로우</div>
-                  <p className="followline">·</p>
-                  <div className="post_region">{photoPost.region}</div>
+                  <img
+                    className="board_wrap_profile post_writerImg"
+                    src={profileImgUrl}
+                  />
+                  <div className="post_section">
+                    <div className="post_writer">
+                      {photoPost.member?.nickname}
+                    </div>
+                    <div className="follow_btn">팔로우</div>
+                    <p className="followline">·</p>
+                    <div className="post_region">{photoPost.region}</div>
+                  </div>
                 </div>
                 <div className="post_view_count">
                   <p>👀 ({photoPost.view_count})</p>
@@ -62,6 +92,12 @@ const DetailPhoto = () => {
                   <div className="post_hr" />
                   <div className="commentList">💘 Comments</div>
                 </div>
+                {user && user.memberId == photoPost.member?.memberId && (
+                  <div className="post_edit_button">
+                    <button>수정</button>
+                    <button onClick={deletePost}>삭제</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

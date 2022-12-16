@@ -39,15 +39,18 @@
 }
 .editor_write_done {
   position: relative;
-  top: 22.5px;
+  top: 57px;
   left: 870px;
 }
 .editor_write_cancel {
   position: relative;
-  top: -16px;
+  top: 20px;
   left: 760px;
 }
 .quill {
   height: 500px;
   min-height: 500px;
+}
+.quill-align-center {
+  text-align: center;
 }

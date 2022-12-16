@@ -1,32 +1,66 @@
 import axios from "axios";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useRecoilState } from "recoil";
 import { userState } from "../../recoil";
 import { BACKEND_URL } from "../../utils/env";
-import CustomToolbar from "./CustomToolbar";
 
 const QuillEditor = () => {
   const [user, setUser] = useRecoilState(userState);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [region, setRegion] = useState("");
-  const [writer, setWriter] = useState(user && user.nickname);
+  const quillRef = useRef();
+  const formData = new FormData();
+
+  // 이미지 핸들러
+  const imageHandler = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.setAttribute("multiple", "");
+    input.click();
+
+    input.addEventListener("change", async (e) => {
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append("files", file);
+      try {
+        const data = await axios.post(`${BACKEND_URL}/image`, formData);
+        const IMG_URL = data.data;
+        const editor = quillRef.current.getEditor();
+        const range = editor.getSelection();
+
+        editor.insertEmbed(range.index, "image", IMG_URL);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  };
 
   // react-quill & 커스텀 툴바 사용
-  const modules = useMemo(
-    () => ({
+  const modules = useMemo(() => {
+    return {
       toolbar: {
-        container: "#toolbar",
+        container: [
+          [{ header: [1, 2, 3, false] }],
+          [
+            "bold",
+            "italic",
+            "underline",
+            { align: [] },
+            { color: [] },
+            { background: [] },
+            "image",
+          ],
+        ],
         handlers: {
-          // 위에서 만든 이미지 핸들러 사용하도록 설정
-          //   image: imageHandler,
+          image: imageHandler,
         },
       },
-    })
-    // [imageHandler]
-  );
+    };
+  }, []);
 
   const formats = [
     "header",
@@ -43,49 +77,50 @@ const QuillEditor = () => {
     "image",
   ];
 
-  const handleText = (value) => {
-    // console.log(value);
-    setContent(value);
+  const handleText = (contents) => {
+    setContent(contents);
   };
+
   // react-quill & 커스텀 툴바 끝
 
   // select value 값 넘기기
   const onRegionChange = (e) => {
     setRegion(e.target.value);
   };
-  //   console.log(region);
 
   // 글 작성
   const getPost = async (e) => {
     e.preventDefault();
     if (window.confirm("등록하시겠습니까?")) {
-      if (title == "") {
+      if (title === "") {
         alert("제목을 입력해주세요.");
         return;
-      } else if (content == "") {
+      } else if (content === "") {
         alert("내용을 입력해주세요.");
         return;
-      } else if (region == "") {
+      } else if (region === "") {
         alert("카테고리를 선택해주세요.");
         return;
       }
       try {
-        axios({
-          url: `${BACKEND_URL}/board/write`,
+        formData.append("region", region);
+        formData.append("title", title);
+        formData.append("content", content);
+        const data = await axios({
+          url: `${BACKEND_URL}/board/write?memberId=${user.id}`,
           method: "POST",
-          data: {
-            region,
-            title,
-            content,
-            writer,
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
+          data: formData,
         });
         setTitle("");
         setContent("");
-        alert("등록되었습니다.");
         window.location.href = "/photo";
+        alert("작성 완료");
       } catch (e) {
         console.log(e);
+        alert("작성 실패");
       }
     }
   };
@@ -125,11 +160,12 @@ const QuillEditor = () => {
           />
         </div>
         <div className="text-editor">
-          <CustomToolbar />
           <ReactQuill
+            placeholder="당신의 추억을 공유해주세요."
+            ref={quillRef}
             modules={modules}
             formats={formats}
-            value={content}
+            content={content}
             onChange={handleText}
           />
         </div>
@@ -140,7 +176,7 @@ const QuillEditor = () => {
       <button
         className="editor_write_btn editor_write_cancel"
         onClick={() => {
-          if (title.length != 0 || content.length != 0) {
+          if (title.length !== 0 || content.length !== 0) {
             if (window.confirm("작성을 취소하시겠습니까?")) {
               window.location.href = "/photo";
             }

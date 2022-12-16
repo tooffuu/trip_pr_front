@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/main/Home";
 import Login from "./components/sign/Login";
 import SignUp from "./components/sign/SignUp";
-import SignUser from "./components/sign/SignUser";
 import Profile from "./components/mypage/Profile";
 import CheckPw from "./components/mypage/CheckPw";
 import FindId from "./components/sign/FindId";
@@ -24,9 +23,6 @@ function App() {
         </Route>
         <Route path={"/signup"} exact>
           <SignUp />
-        </Route>
-        <Route path={"/selectRole"} exact>
-          <SignUser />
         </Route>
         <Route path={"/myprofile"} exact>
           <Profile />

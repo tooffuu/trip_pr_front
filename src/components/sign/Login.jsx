@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { userState } from "../../recoil";
+import { profileState, userState } from "../../recoil";
 import "../../style/sign/Login.scss";
 import { BACKEND_URL } from "../../utils/env";
 import Topbar2 from "../main/Topbar2";
@@ -10,6 +10,9 @@ const Login = () => {
   const [memberId, setMemberId] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useRecoilState(userState);
+  const [profileImg, setProfileImg] = useRecoilState(profileState);
+
+  const imagePath = process.env.PUBLIC_URL + "/assets/";
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -25,6 +28,7 @@ const Login = () => {
       setMemberId("");
       setPassword("");
       setUser(data.data);
+      setProfileImg(data.data);
       alert(data.data.nickname + "님 환영합니다! 🚀");
       window.location.href = "/";
     } catch (e) {

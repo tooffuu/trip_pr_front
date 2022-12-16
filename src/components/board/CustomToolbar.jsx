@@ -9,7 +9,6 @@ const CustomToolbar = () => {
       </select>
       <button className="ql-bold"></button>
       <button className="ql-italic"></button>
-      {/* <select className="ql-size"></select> */}
       <select className="ql-align"></select>
       <select className="ql-color">
         <option value="red"></option>
@@ -21,7 +20,6 @@ const CustomToolbar = () => {
         <option value="black"></option>
       </select>
       <select className="ql-background"></select>
-      <button className="ql-link"></button>
       <button className="ql-image"></button>
     </div>
   );

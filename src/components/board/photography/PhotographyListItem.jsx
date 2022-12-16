@@ -5,13 +5,18 @@ import { profileState } from "../../../recoil";
 
 const PhotographyListItem = ({ photoPost }) => {
   const [profileImg, setProfileImg] = useRecoilState(profileState);
+  const imagePath = process.env.PUBLIC_URL + "/assets/";
+  const profileImgUrl = imagePath + photoPost.member.profile_img_name;
 
   return (
     <>
       <div className="board_wrap">
         <div className="board_wrap_writter">
-          <img className="board_wrap_profile" src={profileImg} />
-          <p className="board_wrap_nick">{photoPost.writer}</p>
+          <img
+            className="board_wrap_profile post_writerImg"
+            src={profileImgUrl}
+          />
+          <p className="board_wrap_nick">{photoPost.member.nickname}</p>
         </div>
         <div className="board_list">
           <img

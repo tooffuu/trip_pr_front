@@ -5,12 +5,9 @@ import { profileState, userState } from "../../recoil";
 import { useRecoilState } from "recoil";
 
 const UpdateProfileImage = () => {
-  const [id, setId] = useState("");
   const [user, setUser] = useRecoilState(userState);
-  const [memberId, setMemberId] = useState(user && user.memberId);
   const [imgFile, setImgFile] = useState(null);
   const [imgBase64, setImgBase64] = useState("");
-  const [imgList, setImgList] = useState([]);
   const [profileImg, setProfileImg] = useRecoilState(profileState);
 
   const imagePath = process.env.PUBLIC_URL + "/assets/";
@@ -34,72 +31,43 @@ const UpdateProfileImage = () => {
     }
   };
 
-  // 프로필 이미지 db저장
+  // 프로필 이미지 변경
   const uploadImg = async (e) => {
     const formData = new FormData();
     for (let i = 0; i < imgFile.length; i++) {
       formData.append("file", imgFile[i]);
     }
-    if (imgList.id == 0) {
-      await axios({
-        method: "POST",
-        url: `${BACKEND_URL}/image/profile`,
-        params: {
-          memberId,
-        },
-        headers: {
-          "Content-Type": `multipart/form-data`,
-        },
-        data: formData,
+    await axios({
+      url: `${BACKEND_URL}/member/updateProfileImg/${user.id}`,
+      method: "PATCH",
+      headers: {
+        "Content-Type": `multipart/form-data`,
+      },
+      data: formData,
+    })
+      .then((response) => {
+        if (response.data) {
+          setImgFile(null);
+          setImgBase64([]);
+          alert("등록되었습니다.");
+          window.location.href = "/myprofile";
+        }
       })
-        .then((response) => {
-          if (response.data) {
-            setImgFile(null);
-            setImgBase64([]);
-            alert("등록되었습니다.");
-            window.location.href = "/myprofile";
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
-    // 이미지 수정용
-    // else if (imgList.id != 0) {
-    //   e.preventDefault();
-    //   await axios({
-    //     url: `${BACKEND_URL}/image/updateImg/${imgList.id}`,
-    //     method: "PATCH",
-    //     data: {
-    //       formData,
-    //     },
-    //     headers: {
-    //       "Content-Type": `multipart/form-data`,
-    //     },
-    //   })
-    //     .then((response) => {
-    //       if (response.data) {
-    //         setImgFile(null);
-    //         setImgBase64([]);
-    //         alert("등록되었습니다.");
-    //         window.location.href = "/myprofile";
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // }
+      .catch((e) => {
+        if (imgFile[0].size > 1048576) {
+          alert("Image size is Over");
+        }
+        console.log("파일 사이즈 : " + imgFile[0].size);
+      });
   };
 
-  // 이미지 불러오기
   const showProfileImage = async (e) => {
     const data = await axios({
-      url: `${BACKEND_URL}/image/showProfile/${memberId}`,
+      url: `${BACKEND_URL}/member/${user.id}`,
       method: "GET",
     })
       .then((response) => {
-        setImgList(response.data);
-        setProfileImg(imagePath + response.data.imageName);
+        setProfileImg(imagePath + response.data.profile_img_name);
       })
       .catch((e) => {
         console.log(e);
@@ -107,45 +75,8 @@ const UpdateProfileImage = () => {
   };
 
   useEffect(() => {
-    showProfileImage();
+    user && showProfileImage();
   }, []);
-
-  // 기본 이미지로 변경하기
-  const setBasicImage = async (e) => {
-    if (window.confirm("기본 이미지로 변경하시겠습니까?")) {
-      e.preventDefault();
-      try {
-        const data = await axios({
-          url: `${BACKEND_URL}/image/deleteProfile/${imgList.id}`,
-          method: "DELETE",
-          data: { id },
-        });
-        alert("변경되었습니다.");
-        window.location.href = "/myprofile";
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
-
-  // 프로필 이미지 수정
-  // const updateProfileImg = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const data = await axios({
-  //       url: `${BACKEND_URL}/image/updateImg/${imgList.id}`,
-  //       method: "PATCH",
-  //       data: {
-  //         imageName: imgList.imageName,
-  //         originalImageName: imgList.originalImageName,
-  //         image_url: imgList.image_url,
-  //       },
-  //     });
-  //     setImgFile(null);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   return (
     <div className="file_upload_box">
@@ -157,7 +88,6 @@ const UpdateProfileImage = () => {
           <img src={profileImg} />
         )}
       </div>
-      {/* <form onSubmit={updateProfileImg}> */}
       <input
         className="file_upload_input"
         id="file"
@@ -173,12 +103,11 @@ const UpdateProfileImage = () => {
         </button>
         <button
           className="upload_photo_btn set_basic_profile"
-          onClick={setBasicImage}
+          // onClick={setBasicImage}
         >
           기본이미지로 변경
         </button>
       </div>
-      {/* </form> */}
     </div>
   );
 };

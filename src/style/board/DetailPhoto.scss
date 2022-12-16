@@ -19,6 +19,9 @@
   //   border: 1px solid red;
   width: 300px;
 }
+.post_section {
+  display: inline-flex;
+}
 .post_writer {
   // border 값 지우지 말기
   border: 1px solid rgba(0, 0, 0, 0);
@@ -61,6 +64,7 @@
 .post_view_count {
   position: relative;
   display: inline-flex;
+  top: 10px;
   left: 500px;
 }
 .post_likes {
@@ -68,12 +72,14 @@
 }
 .post_content {
   position: relative;
+
   top: 20px;
   min-height: 200px;
 }
 .content_box {
   border-top: 1px solid rgba(156, 156, 156, 0.2);
   min-height: 500px;
+  margin-bottom: 50px;
 }
 .post_hr {
   position: relative;
@@ -82,4 +88,17 @@
 .commentList {
   margin-top: 10px;
   margin-left: 3px;
+}
+// 수정, 삭제 버튼
+.post_edit_button {
+  display: inline-block;
+  position: relative;
+  left: 850px;
+  top: -50px;
+}
+.ql-align-center {
+  text-align: center;
+}
+.ql-align-right {
+  text-align: right;
 }
