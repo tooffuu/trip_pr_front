@@ -22,12 +22,10 @@ const DetailPhoto = () => {
       setPhotoPost(data.data);
     };
     getData();
-  }, []);
+  }, [postId]);
 
   const imagePath = process.env.PUBLIC_URL + "/assets/";
   const profileImgUrl = imagePath + photoPost.member?.profile_img_name;
-
-  console.log(photoPost);
 
   // 게시글 삭제
 
@@ -69,6 +67,7 @@ const DetailPhoto = () => {
                 <div className="follow_user">
                   <img
                     className="board_wrap_profile post_writerImg"
+                    alt="profileImage"
                     src={profileImgUrl}
                   />
                   <div className="post_section">
@@ -92,7 +91,7 @@ const DetailPhoto = () => {
                   <div className="post_hr" />
                   <div className="commentList">💘 Comments</div>
                 </div>
-                {user && user.memberId == photoPost.member?.memberId && (
+                {user && user.memberId === photoPost.member?.memberId && (
                   <div className="post_edit_button">
                     <button>수정</button>
                     <button onClick={deletePost}>삭제</button>

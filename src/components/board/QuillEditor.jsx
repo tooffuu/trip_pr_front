@@ -11,6 +11,7 @@ const QuillEditor = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [region, setRegion] = useState("");
+  const [imageIdList, setImageIdList] = useState([]);
   const quillRef = useRef();
   const formData = new FormData();
 
@@ -28,11 +29,14 @@ const QuillEditor = () => {
       formData.append("files", file);
       try {
         const data = await axios.post(`${BACKEND_URL}/image`, formData);
-        const IMG_URL = data.data;
+        const IMG_URL = data.data.imgUrl;
         const editor = quillRef.current.getEditor();
         const range = editor.getSelection();
 
         editor.insertEmbed(range.index, "image", IMG_URL);
+
+        //이미지 리스트 배열
+        setImageIdList((prev) => prev.concat(data.data.id));
       } catch (e) {
         console.log(e);
       }
@@ -80,7 +84,6 @@ const QuillEditor = () => {
   const handleText = (contents) => {
     setContent(contents);
   };
-
   // react-quill & 커스텀 툴바 끝
 
   // select value 값 넘기기
@@ -106,6 +109,7 @@ const QuillEditor = () => {
         formData.append("region", region);
         formData.append("title", title);
         formData.append("content", content);
+        formData.append("imageIdList", imageIdList);
         const data = await axios({
           url: `${BACKEND_URL}/board/write?memberId=${user.id}`,
           method: "POST",
