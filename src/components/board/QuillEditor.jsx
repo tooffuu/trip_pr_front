@@ -104,6 +104,9 @@ const QuillEditor = () => {
       } else if (region === "") {
         alert("카테고리를 선택해주세요.");
         return;
+      } else if (imageIdList == 0) {
+        alert("사진을 한 장이상 선택해주세요.");
+        return;
       }
       try {
         formData.append("region", region);

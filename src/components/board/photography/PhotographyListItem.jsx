@@ -8,6 +8,8 @@ const PhotographyListItem = ({ photoPost }) => {
   const imagePath = process.env.PUBLIC_URL + "/assets/";
   const profileImgUrl = imagePath + photoPost.member.profile_img_name;
 
+  console.log(photoPost.boardImageList[0].imgUrl);
+
   return (
     <>
       <div className="board_wrap">
@@ -19,13 +21,16 @@ const PhotographyListItem = ({ photoPost }) => {
           <p className="board_wrap_nick">{photoPost.member.nickname}</p>
         </div>
         <div className="board_list">
-          <img
-            className="board_list_photo"
-            src={photo001}
-            onClick={() => {
-              window.location.href = `/photo/${photoPost.postId}`;
-            }}
-          />
+          <div className="photo_wrapper">
+            <img
+              className="board_list_photo"
+              // src={photo001}
+              src={photoPost?.boardImageList[0].imgUrl}
+              onClick={() => {
+                window.location.href = `/photo/${photoPost.postId}`;
+              }}
+            />
+          </div>
           <p className="board_list_content">{photoPost.title}</p>
         </div>
       </div>

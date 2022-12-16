@@ -77,9 +77,15 @@
   position: relative;
   left: 10px;
 }
+.photo_wrapper {
+  width: 280px;
+  height: 280px;
+}
 .board_list_photo {
-  width: 98%;
+  width: 280px;
+  height: 270px;
   position: relative;
+  top: 3px;
   left: 3px;
   border-radius: 10px;
   cursor: pointer;
