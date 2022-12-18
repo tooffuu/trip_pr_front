@@ -1,14 +1,13 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import photo001 from "../../../image/photo001.jpg";
 import { profileState } from "../../../recoil";
 
 const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
   const [profileImg, setProfileImg] = useRecoilState(profileState);
   const imagePath = process.env.PUBLIC_URL + "/assets/";
-  const profileImgUrl = imagePath + photoPost?.member.profile_img_name;
+  const profileImgUrl = imagePath + photoPost?.memberDto.profile_img_name;
   const profileImgUrlByRegion =
-    imagePath + photoPostByRegion?.member.profile_img_name;
+    imagePath + photoPostByRegion?.memberDto.profile_img_name;
 
   return (
     <>
@@ -19,7 +18,7 @@ const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
               className="board_wrap_profile post_writerImg"
               src={profileImgUrl}
             />
-            <p className="board_wrap_nick">{photoPost.member.nickname}</p>
+            <p className="board_wrap_nick">{photoPost.memberDto.nickname}</p>
           </div>
           <div className="board_list">
             <div className="photo_wrapper">

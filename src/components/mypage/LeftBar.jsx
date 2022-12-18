@@ -38,7 +38,7 @@ const LeftBar = () => {
                   <a href="/myprofile">
                     <p>🦸‍♀️ Nonfications</p>
                   </a>
-                  <a href="/myprofile">
+                  <a href="/myReview">
                     <p>🦸‍♀️ 나의 리뷰</p>
                   </a>
                   <a href="/checkpw">

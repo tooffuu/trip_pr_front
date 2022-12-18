@@ -116,6 +116,21 @@
   margin-right: 4px;
 }
 
+// 좋아요
+.post_like_btn {
+  position: absolute;
+  background-color: inherit;
+  border: 0px;
+  bottom: 40px;
+  left: 910px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.post_like_btn:active {
+  font-size: 26px;
+  bottom: 41px;
+}
+
 // qill-editor html코드 수정
 .ql-align-center {
   text-align: center;

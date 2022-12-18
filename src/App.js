@@ -13,6 +13,7 @@ import DetailPhoto from "./components/board/photography/DetailPhoto";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "./utils/env";
+import MyReview from "./components/mypage/MyReview";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
         </Route>
         <Route path={"/myprofile"} exact>
           <Profile />
+        </Route>
+        <Route path={"/myReview"} exact>
+          <MyReview />
         </Route>
         <Route path={"/checkpw"} exact>
           <CheckPw />

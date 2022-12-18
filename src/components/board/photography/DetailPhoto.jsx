@@ -12,6 +12,7 @@ const DetailPhoto = () => {
   const { postId } = useParams();
   const [user, setUser] = useRecoilState(userState);
   const [photoPost, setPhotoPost] = useState([]);
+  var number = 0;
 
   useEffect(() => {
     const getData = async () => {
@@ -25,7 +26,7 @@ const DetailPhoto = () => {
   }, [postId]);
 
   const imagePath = process.env.PUBLIC_URL + "/assets/";
-  const profileImgUrl = imagePath + photoPost.member?.profile_img_name;
+  const profileImgUrl = imagePath + photoPost.memberDto?.profile_img_name;
 
   // 게시글 삭제
   const deletePost = async (e) => {
@@ -71,7 +72,7 @@ const DetailPhoto = () => {
                   />
                   <div className="post_section">
                     <div className="post_writer">
-                      {photoPost.member?.nickname}
+                      {photoPost.memberDto?.nickname}
                     </div>
                     <div className="follow_btn">팔로우</div>
                     <p className="followline">·</p>
@@ -88,10 +89,18 @@ const DetailPhoto = () => {
                     className="content_box"
                     dangerouslySetInnerHTML={{ __html: `${photoPost.content}` }}
                   ></div>
+                  {/* <button
+                    className="post_like_btn"
+                    onClick={() => {
+                      console.log((number += 1));
+                    }}
+                  >
+                    👍🏻
+                  </button> */}
                   <div className="post_hr" />
-                  <div className="commentList">💘 Comments</div>
+                  <div className="commentList">💌 Comments</div>
                 </div>
-                {user && user.memberId === photoPost.member?.memberId && (
+                {user && user.memberId === photoPost.memberDto?.memberId && (
                   <div className="post_edit_button">
                     <button
                       className="post_edit_btn"
