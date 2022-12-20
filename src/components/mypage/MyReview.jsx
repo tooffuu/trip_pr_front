@@ -38,6 +38,15 @@ const MyReview = () => {
         <div className="login_container">
           <LeftBar />
           <div className="review_wrap">
+            <table className="review_tr">
+              <thead>
+                <tr>
+                  <th className="review_th_title">제목</th>
+                  <th className="review_th_date">작성일</th>
+                  <th className="review_th_views">조회수</th>
+                </tr>
+              </thead>
+            </table>
             {/* <div className="review_list"> */}
             {reverseGetPostByUser.map((post, index) => (
               <MyReviewList key={index} post={post} />

@@ -45,7 +45,7 @@ const LeftBar = () => {
                     <p>🦸‍♀️ 나의 코스</p>
                   </a>
                   <a href="/checkpw">
-                    <p>🦸‍♀️ 사진 보기</p>
+                    <p>🦸‍♀️ 나의 팔로우</p>
                   </a>
                 </div>
                 <div className="menu_setting01">

@@ -12,6 +12,8 @@ const DetailPhoto = () => {
   const { postId } = useParams();
   const [user, setUser] = useRecoilState(userState);
   const [photoPost, setPhotoPost] = useState([]);
+  const [date, setDate] = useState("");
+  const dateTime = date.split("T");
   var number = 0;
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const DetailPhoto = () => {
         method: "GET",
       });
       setPhotoPost(data.data);
+      setDate(data.data.modifiedDate);
     };
     getData();
   }, [postId]);
@@ -83,20 +86,22 @@ const DetailPhoto = () => {
                   <p>👀 ({photoPost.view_count})</p>
                   <p className="post_likes">👍 ({photoPost.view_count})</p>
                 </div>
-                <p className="modified_date">{photoPost.modifiedDate}</p>
+                <p className="modified_date">
+                  {dateTime[0] + " " + dateTime[1]}
+                </p>
                 <div className="post_content">
                   <div
                     className="content_box"
                     dangerouslySetInnerHTML={{ __html: `${photoPost.content}` }}
                   ></div>
-                  {/* <button
+                  <button
                     className="post_like_btn"
                     onClick={() => {
                       console.log((number += 1));
                     }}
                   >
                     👍🏻
-                  </button> */}
+                  </button>
                   <div className="post_hr" />
                   <div className="commentList">💌 Comments</div>
                 </div>

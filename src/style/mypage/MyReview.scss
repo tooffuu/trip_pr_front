@@ -5,26 +5,50 @@
   min-height: 500px;
   left: 250px;
 }
+.review_tr {
+  border: 1px solid rgb(196, 196, 196);
+}
+.review_th_title {
+  width: 500px;
+  border-right: 1px solid rgb(196, 196, 196);
+}
+.review_th_date {
+  width: 200px;
+  border-right: 1px solid rgb(196, 196, 196);
+}
+.review_th_views {
+  width: 50px;
+}
+// review list
 .myReview {
-  border: 1px solid rgba(196, 196, 196, 0.5);
   display: inline-flex;
   border-radius: 10px;
   width: 100%;
-  margin-bottom: 20px;
-}
-.myReview_img {
-  width: 100px;
-  margin-right: 15px;
-  border-radius: 10px;
+  height: 20px;
+  margin-top: 10px;
+  color: rgb(66, 66, 66);
 }
 .myReview_title {
   position: relative;
-  height: 30px;
-  top: 35px;
-  font-size: 18px;
-  color: gray;
+  display: inline-block;
+  left: 5px;
+  width: 490px;
+}
+.myReview_title > span {
   cursor: pointer;
 }
-.myReview_title:hover {
+.myReview_date {
+  position: relative;
+  left: 15px;
+  text-align: center;
+  width: 200px;
+}
+.myReview_view {
+  position: relative;
+  left: 25px;
+  width: 50px;
+  text-align: center;
+}
+.myReview_title > span:hover {
   text-decoration: underline;
 }

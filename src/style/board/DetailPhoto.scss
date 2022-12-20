@@ -121,14 +121,14 @@
   position: absolute;
   background-color: inherit;
   border: 0px;
-  bottom: 40px;
+  bottom: 0px;
   left: 910px;
   font-size: 25px;
   cursor: pointer;
 }
 .post_like_btn:active {
   font-size: 26px;
-  bottom: 41px;
+  bottom: -1px;
 }
 
 // qill-editor html코드 수정

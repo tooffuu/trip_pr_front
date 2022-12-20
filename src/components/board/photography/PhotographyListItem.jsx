@@ -18,7 +18,7 @@ const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
               className="board_wrap_profile post_writerImg"
               src={profileImgUrl}
             />
-            <p className="board_wrap_nick">{photoPost.memberDto.nickname}</p>
+            <p className="board_wrap_nick">{photoPost?.memberDto.nickname}</p>
           </div>
           <div className="board_list">
             <div className="photo_wrapper">
@@ -41,7 +41,7 @@ const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
               src={profileImgUrlByRegion}
             />
             <p className="board_wrap_nick">
-              {photoPostByRegion.member.nickname}
+              {photoPostByRegion?.memberDto.nickname}
             </p>
           </div>
           <div className="board_list">

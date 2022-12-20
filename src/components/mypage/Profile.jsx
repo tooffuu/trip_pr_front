@@ -22,13 +22,14 @@ const Profile = () => {
     } else {
       try {
         const data = await axios({
-          url: `${BACKEND_URL}/member/updatePw/${user.id}`,
+          url: `${BACKEND_URL}/member/updateProfile/${user.id}`,
           method: "PATCH",
           data: {
+            nickname,
             password,
           },
         });
-        setPassword(data.data);
+        setUser(data.data);
         alert("🔔 정보가 수정되었습니다.");
         window.location.href = "/";
       } catch (e) {
