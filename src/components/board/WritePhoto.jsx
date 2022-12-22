@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import Topbar from "../main/Topbar";
 import "../../style/board/WritePhoto.scss";
 import QuillEditor from "./QuillEditor";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { BACKEND_URL } from "../../utils/env";
 
 const WritePhoto = () => {
   return (

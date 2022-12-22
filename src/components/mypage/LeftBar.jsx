@@ -39,7 +39,10 @@ const LeftBar = () => {
                     <p>🦸‍♀️ Nonfications</p>
                   </a>
                   <a href="/myReview">
-                    <p>🦸‍♀️ 나의 리뷰</p>
+                    <p>🦸‍♀️ 나의 게시글</p>
+                  </a>
+                  <a href="/myReview">
+                    <p>🦸‍♀️ 나의 댓글</p>
                   </a>
                   <a href="/checkpw">
                     <p>🦸‍♀️ 나의 코스</p>
@@ -52,12 +55,6 @@ const LeftBar = () => {
                   🌴Setting
                   <a href="/checkpw">
                     <p>🎅 고객센터</p>
-                  </a>
-                  <a href="/checkpw">
-                    <p>🎅 프로필 변경</p>
-                  </a>
-                  <a href="/checkpw">
-                    <p>🎅 프로필 변경</p>
                   </a>
                 </div>
               </div>

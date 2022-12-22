@@ -7,6 +7,7 @@ import Topbar from "../../main/Topbar";
 import "../../../style/board/DetailPhoto.scss";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil";
+import Comments from "../Comments";
 
 const DetailPhoto = () => {
   const { postId } = useParams();
@@ -102,22 +103,25 @@ const DetailPhoto = () => {
                   >
                     👍🏻
                   </button>
+                  {user && user.memberId === photoPost.memberDto?.memberId && (
+                    <div className="post_edit_button">
+                      <button
+                        className="post_edit_btn"
+                        onClick={() => {
+                          window.location.href = `/photo/write/${postId}`;
+                        }}
+                      >
+                        수정
+                      </button>
+                      <button onClick={deletePost}>삭제</button>
+                    </div>
+                  )}
                   <div className="post_hr" />
                   <div className="commentList">💌 Comments</div>
                 </div>
-                {user && user.memberId === photoPost.memberDto?.memberId && (
-                  <div className="post_edit_button">
-                    <button
-                      className="post_edit_btn"
-                      onClick={() => {
-                        window.location.href = `/photo/write/${postId}`;
-                      }}
-                    >
-                      수정
-                    </button>
-                    <button onClick={deletePost}>삭제</button>
-                  </div>
-                )}
+                <div>
+                  <Comments />
+                </div>
               </div>
             </div>
           </div>

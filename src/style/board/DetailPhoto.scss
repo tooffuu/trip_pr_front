@@ -100,8 +100,8 @@
 .post_edit_button {
   display: inline-block;
   position: relative;
-  left: 850px;
-  top: -50px;
+  left: 820px;
+  top: -20px;
 }
 .post_edit_button button {
   background-color: rgba(104, 200, 238, 0.3);
@@ -121,14 +121,14 @@
   position: absolute;
   background-color: inherit;
   border: 0px;
-  bottom: 0px;
+  bottom: 52px;
   left: 910px;
   font-size: 25px;
   cursor: pointer;
 }
 .post_like_btn:active {
   font-size: 26px;
-  bottom: -1px;
+  bottom: 50px;
 }
 
 // qill-editor html코드 수정

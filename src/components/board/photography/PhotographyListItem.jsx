@@ -26,7 +26,8 @@ const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
                 className="board_list_photo"
                 src={photoPost?.boardImageList[0].imgUrl}
                 onClick={() => {
-                  window.location.href = `/photo/${photoPost.postId}`;
+                  console.log(photoPost.postId);
+                  // window.location.href = `/photo/${photoPost.postId}`;
                 }}
               />
             </div>
