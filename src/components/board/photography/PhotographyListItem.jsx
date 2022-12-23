@@ -1,13 +1,26 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { profileState } from "../../../recoil";
+import { profileState, userState } from "../../../recoil";
+import { BACKEND_URL } from "../../../utils/env";
 
 const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
-  const [profileImg, setProfileImg] = useRecoilState(profileState);
+  const [user, setUser] = useRecoilState(userState);
+  const [view_count, setView_count] = useState(photoPost?.view_count);
   const imagePath = process.env.PUBLIC_URL + "/assets/";
   const profileImgUrl = imagePath + photoPost?.memberDto.profile_img_name;
   const profileImgUrlByRegion =
     imagePath + photoPostByRegion?.memberDto.profile_img_name;
+  const id = photoPost?.postId;
+
+  const updateView = async (e) => {
+    const data = await axios({
+      url: `${BACKEND_URL}/board/updateView/${id}`,
+      method: "PATCH",
+      data: { view_count: view_count + 1 },
+    });
+  };
 
   return (
     <>
@@ -26,8 +39,10 @@ const PhotographyListItem = ({ photoPost, photoPostByRegion, region }) => {
                 className="board_list_photo"
                 src={photoPost?.boardImageList[0].imgUrl}
                 onClick={() => {
-                  console.log(photoPost.postId);
-                  // window.location.href = `/photo/${photoPost.postId}`;
+                  if (user?.id != photoPost.memberDto?.id) {
+                    updateView();
+                  }
+                  window.location.href = `/photo/${id}`;
                 }}
               />
             </div>

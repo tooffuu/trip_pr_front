@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PhotographyListItem from "./PhotographyListItem";
 
 const PhotographyList = ({ photoPosts, region, photoPostByRegion }) => {

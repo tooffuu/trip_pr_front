@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "./utils/env";
 import MyReview from "./components/mypage/MyReview";
+import ShareRoute from "./components/board/shareRoute/ShareRoute";
 
 function App() {
   return (
@@ -54,6 +55,9 @@ function App() {
         </Route>
         <Route path={"/photo/:postId"} exact>
           <DetailPhoto />
+        </Route>
+        <Route path={"/route"} exact>
+          <ShareRoute />
         </Route>
       </Switch>
     </BrowserRouter>

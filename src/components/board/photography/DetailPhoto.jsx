@@ -85,7 +85,7 @@ const DetailPhoto = () => {
                 </div>
                 <div className="post_view_count">
                   <p>👀 ({photoPost.view_count})</p>
-                  <p className="post_likes">👍 ({photoPost.view_count})</p>
+                  <p className="post_likes">👍 (0)</p>
                 </div>
                 <p className="modified_date">
                   {dateTime[0] + " " + dateTime[1]}
@@ -101,7 +101,7 @@ const DetailPhoto = () => {
                       console.log((number += 1));
                     }}
                   >
-                    👍🏻
+                    👍🏼 추천하기
                   </button>
                   {user && user.memberId === photoPost.memberDto?.memberId && (
                     <div className="post_edit_button">

@@ -15,7 +15,7 @@ const Profile = () => {
   const [nickname, setNickname] = useState(user && user.nickname);
 
   // 비밀번호 변경 -> 후에 이름 / 닉네임 / 비밀번호 동시 변경 코드로 수정
-  const updatePassword = async (e) => {
+  const updateProfile = async (e) => {
     e.preventDefault();
     if (password === "") {
       alert("🔔 패스워드를 입력해주세요.");
@@ -34,7 +34,7 @@ const Profile = () => {
         window.location.href = "/";
       } catch (e) {
         console.log(e);
-        alert("🔔 비밀번호 변경 실패 ! 다시 시도해주세요.");
+        alert("🔔 중복된 닉네임입니다.");
       }
     }
   };
@@ -73,7 +73,7 @@ const Profile = () => {
             <hr className="profileHr" />
             <div className="login_container_content signup_container_content">
               <UpdateProfileImage />
-              <form onSubmit={updatePassword}>
+              <form onSubmit={updateProfile}>
                 <div>
                   <p>이름</p>
                   <input

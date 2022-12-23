@@ -28,6 +28,13 @@ const Comments = () => {
         alert("등록되었습니다.");
         window.location.reload();
       } catch (e) {
+        if (user === null) {
+          alert("로그인을 해주세요.");
+          return;
+        } else if (comment.length === 0) {
+          alert("댓글을 작성해주세요.");
+          return;
+        }
         console.log(e);
       }
     }

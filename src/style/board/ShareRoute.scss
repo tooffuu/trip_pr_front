@@ -1,0 +1,48 @@
+.p_description {
+  display: inline-block;
+  margin-top: -20px;
+  margin-left: 5px;
+  font-weight: lighter;
+  color: gray;
+}
+.map_background {
+  border: 1px solid black;
+  display: inline-flex;
+  width: 1050px;
+  margin-left: 10px;
+  min-height: 500px;
+}
+.route_map {
+  border-right: 1px solid blue;
+  width: 600px;
+}
+.add_route {
+  width: 450px;
+}
+.addRouteInput {
+  font-family: "Pretendard-Regular";
+  font-size: 19px;
+  position: relative;
+  width: 80%;
+  height: 45px;
+  margin-left: 8px;
+  margin-top: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.598);
+}
+.addRouteBtn {
+  position: relative;
+  width: 14%;
+  height: 50px;
+  left: 5px;
+  top: -3px;
+  border: 0px;
+  cursor: pointer;
+}
+.addRouteBtn:hover {
+  border: 1.5px solid black;
+}
+.addRouteBtn:active {
+  position: relative;
+  top: -2px;
+  left: 6px;
+}

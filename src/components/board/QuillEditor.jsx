@@ -22,6 +22,7 @@ const QuillEditor = () => {
   const [editRegion, setEditRegion] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [boardCate, setBoardCate] = useState("사진자랑");
 
   // 이미지 핸들러
   const imageHandler = () => {
@@ -127,6 +128,7 @@ const QuillEditor = () => {
         return;
       }
       try {
+        formData.append("boardCate", boardCate);
         formData.append("region", region);
         formData.append("title", title);
         formData.append("content", content);

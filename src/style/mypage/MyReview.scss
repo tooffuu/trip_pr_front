@@ -20,12 +20,21 @@
   width: 50px;
 }
 // review list
+.review_list {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.463);
+  padding-bottom: 12px;
+  height: 120px;
+}
+.review_list:first-child {
+  border-top: 1px solid rgba(128, 128, 128, 0.463);
+}
 .myReview {
   display: inline-flex;
-  border-radius: 10px;
+  position: relative;
   width: 100%;
+  top: -60px;
   height: 20px;
-  margin-top: 10px;
+  left: 35px;
   color: rgb(66, 66, 66);
 }
 .myReview_title {
@@ -37,18 +46,46 @@
 .myReview_title > span {
   cursor: pointer;
 }
-.myReview_date {
-  position: relative;
-  left: 15px;
-  text-align: center;
-  width: 200px;
-}
-.myReview_view {
-  position: relative;
-  left: 25px;
-  width: 50px;
-  text-align: center;
-}
 .myReview_title > span:hover {
   text-decoration: underline;
+}
+.heart_bottom {
+  display: inline-block;
+  position: absolute;
+  top: 87px;
+  left: 0;
+}
+.heart_bottom > span {
+  margin-right: 10px;
+}
+.board_cate {
+  display: inline-block;
+  color: gray;
+  font-size: 15px;
+}
+.review_title {
+  position: absolute;
+  font-size: 19px;
+  // font-weight: bold;
+  color: black;
+  top: 45px;
+  left: 0px;
+}
+.myReview_date {
+  position: relative;
+  text-align: center;
+  width: 200px;
+  right: 0;
+  top: 30px;
+  left: 95px;
+  color: gray;
+}
+// checkbox
+.checkbox {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  left: 3px;
+  top: 30px;
 }
